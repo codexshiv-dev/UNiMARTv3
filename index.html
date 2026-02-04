@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unimart – Smart Gadgets & Kids Products in Nepal</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="images/icon/favicon-letter.svg" />
+    <meta
+      name="description"
+      content="Unimart offers smart gadgets, kids toys, night lamps and home decor in Nepal. Order easily via WhatsApp. Fast delivery & trusted store." />
+    <meta
+      name="keywords"
+      content="unimart, gadgets nepal, kids toys nepal, night lamp nepal, online store nepal" />
+    <meta name="author" content="Unimart" />
+    <meta property="og:title" content="Unimart - Smart Gadgets Store" />
+    <meta
+      property="og:description"
+      content="Smart gadgets, toys & night lights for kids. Order easily via WhatsApp." />
+    <meta
+      property="og:image"
+      content="https://yourdomain.com/images/icon/logo.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- <header class="site-header">
+      <div class="left-section">
+        <img
+          class="hamburger-icon"
+          src="/images/icon/hamburger-menu.svg"
+          alt="" />
+        <div class="logo">
+          <a href="#"><img src="/images/icon/logo.svg" alt="Unimart Logo" /></a>
+        </div>
+      </div>
+
+      <div class="middle-section">
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Search"
+          name="search" />
+
+        <button class="search-button">
+          <img class="search-icon" src="/images/icon/search.svg" alt="" />
+          <div class="tooltip">search</div>
+        </button>
+        <button class="voice-button">
+          <img
+            class="voice-search-icon"
+            src="images/icons/voice-search-icon.svg"
+            alt="" />
+        </button>
+      </div>
+      <div class="right-section">
+        <img class="upload" src="images/icons/upload.svg" alt="" />
+        <img class="youtube-apps" src="images/icons/youtube-apps.svg" alt="" />
+        <div class="notifications-icon-container">
+          <img
+            class="notifications"
+            src="images/icons/notifications.svg"
+            alt="" />
+          <div class="notifications-count">2</div>
+        </div>
+        <img class="profile" src="images/icons/channel-12.jpeg" alt="" />
+      </div>
+    </header> -->
+
+    <header class="site-header">
+      <!-- TOP ROW -->
+      <div class="header-top">
+        <!-- Left -->
+        <div class="header-left">
+          <button class="hamburger" id="openMenu" aria-label="Open Menu">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <div class="logo">
+            <img src="images/icon/logo.svg" alt="Unimart Logo" />
+          </div>
+        </div>
+
+        <!-- Desktop Search -->
+        <div class="header-search desktop-search">
+          <input
+            type="text"
+            placeholder="Search your products..."
+            id="heroSearch" />
+          <button>
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+
+        <!-- Right -->
+        <div class="header-right">
+          <a href="#"><i class="fa-regular fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping"></i> </a>
+          <a href="#"><i class="fa-regular fa-user"></i></a>
+        </div>
+      </div>
+
+      <!-- MOBILE SEARCH ROW -->
+      <form class="header-search mobile-search" role="search">
+        <input type="search" placeholder="Search your products..." />
+        <button type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </header>
+
+    <!-- Mobile Sidebar Menu -->
+    <aside class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <span>Menu</span>
+        <button id="closeMenu">✖</button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Cart</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Contact</a>
+      </nav>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="layout">
+      <!-- FILTER SIDEBAR -->
+      <aside class="filters">
+        <h2>Filters</h2>
+
+        <section>
+          <h3>Category</h3>
+          <ul>
+            <li>Smart Gadgets</li>
+            <li>Smart Toys</li>
+            <li>Lights</li>
+            <li>Projectors</li>
+            <li>Games</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Price</h3>
+          <input type="range" />
+        </section>
+
+        <section>
+          <h3>Discount</h3>
+          <input type="range" />
+        </section>
+
+        <button class="clear-btn">Clear All</button>
+      </aside>
+
+      <!-- PRODUCTS -->
+      <section class="product-grid">
+        <article class="product-card">
+          <img src="images/img1.jpeg" alt="Smart Drone" />
+          <h3>Smart Drone</h3>
+          <p class="price">Rs. 1999</p>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="product-card">
+          <img src="images/img2.jpeg" alt="Projector" />
+          <h3>Mini Projector</h3>
+          <p class="price">Rs. 3500</p>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="product-card">
+          <img src="images/img3.jpeg" alt="Night Lamp" />
+          <h3>Moon Night Lamp</h3>
+          <p class="price">Rs. 699</p>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="product-card">
+          <img src="/images/img4.jpeg" alt="Smart Watch" />
+          <h3>Smart Watch</h3>
+          <p class="price">Rs. 2500</p>
+          <button>Add to Cart</button>
+        </article>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <!-- Brand -->
+        <div class="footer-col">
+          <img
+            src="images/icon/logo.svg"
+            alt="Unimart Logo"
+            class="footer-logo" />
+          <p class="footer-text">
+            Unimart is your trusted store for smart gadgets, toys and home decor
+            for kids and families.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#new">New Arrivals</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#contact">Order</a></li>
+            <li><a href="#">Home</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p><i class="fa fa-phone"></i> +977 9700013011</p>
+          <p><i class="fa fa-envelope"></i> support@unimart.com</p>
+          <p><i class="fa fa-location-dot"></i> Kathmandu, Nepal</p>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="footer-social">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+
+          <p class="trust-text">
+            ✔ Secure Orders <br />
+            ✔ Fast Delivery <br />
+            ✔ Quality Products
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        <p>© 2026 Unimart | All Rights Reserved</p>
+        <p class="dev-credit">
+          Designed & Developed by
+          <a href="https://sng.com.np" target="_blank">SNG Web Studio</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
