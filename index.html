@@ -122,44 +122,29 @@
 
       <!-- PRODUCTS -->
       <section class="product-grid">
-        <article class="product-card">
-          <div class="product-card">
-            <div class="product-img">
-              <img src="/images/img1.jpeg" alt="Panda Night Lamp" />
-              <span class="wishlist"><i class="fa fa-heart"></i></span>
-            </div>
-
-            <div class="product-info">
-              <h3>Panda Night Lamp for Kids heloo</h3>
-              <p class="short-desc">
-                Soft LED night light for kids room roordfsdsd
-              </p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-            </div>
+        <article
+          class="product-card"
+          onclick="
+            openProduct(
+              'Smart Watch',
+              '2500',
+              'Bluetooth smart watch with heart rate monitor',
+              '/images/img1.jpeg',
+            )
+          ">
+          <div class="product-img">
+            <img src="images/img2.jpeg" alt="Panda Night Lamp" />
+            <span class="wishlist"><i class="fa fa-heart"></i></span>
           </div>
-        </article>
 
-        <article class="product-card">
-          <div class="product-card">
-            <div class="product-img">
-              <img src="images/img2.jpeg" alt="Panda Night Lamp" />
-              <span class="wishlist"><i class="fa fa-heart"></i></span>
-            </div>
+          <div class="product-info">
+            <h3>Panda Night Lamp for Kids</h3>
+            <p class="short-desc">Soft LED night light for kids room</p>
 
-            <div class="product-info">
-              <h3>Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
+            <div class="price-row">
+              <span class="price">₹699</span>
+              <span class="old-price">₹1499</span>
+              <span class="discount">53% OFF</span>
             </div>
           </div>
         </article>
@@ -267,5 +252,16 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      function openProduct(name, price, desc, img) {
+        const url = `product.html?name=${encodeURIComponent(name)}
+  &price=${encodeURIComponent(price)}
+  &desc=${encodeURIComponent(desc)}
+  &img=${encodeURIComponent(img)}`;
+
+        window.location.href = url;
+      }
+    </script>
   </body>
 </html>

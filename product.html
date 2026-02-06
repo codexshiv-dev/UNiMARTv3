@@ -3,37 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <title>Product Details</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="images/icon/favicon-letter.svg" />
+    <meta
+      name="description"
+      content="Unimart offers smart gadgets, kids toys, night lamps and home decor in Nepal. Order easily via WhatsApp. Fast delivery & trusted store." />
+    <meta
+      name="keywords"
+      content="unimart, gadgets nepal, kids toys nepal, night lamp nepal, online store nepal" />
+    <meta name="author" content="Unimart" />
+    <meta property="og:title" content="Unimart - Smart Gadgets Store" />
+    <meta
+      property="og:description"
+      content="Smart gadgets, toys & night lights for kids. Order easily via WhatsApp." />
+    <meta
+      property="og:image"
+      content="https://yourdomain.com/images/icon/logo.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
     <header class="site-header">
       <a href="index.html">⬅ Back to Shop</a>
     </header>
 
-    <main class="product-detail">
-      <section class="detail-main">
-        <img id="productImg" src="" alt="" />
+    <main class="product-detail-page">
+      <!-- PRODUCT TOP -->
+      <section class="product-top">
+        <div class="product-image">
+          <img id="productImg" src="images/img1.jpeg" alt="Product" />
+          <div class="image-actions">
+            <!-- <span class="wishlist-btn">♡</span> -->
+            <span class="share-btn" id="shareBtn">🔗</span>
+          </div>
+          <!-- Thumbnails -->
+          <div class="thumbs" id="thumbs"></div>
+        </div>
 
-        <div class="detail-info">
+        <div class="product-detail-info">
           <h1 id="productName"></h1>
-          <p id="productPrice"></p>
+
+          <div class="price-row">
+            <span class="price" id="productPrice"></span>
+            <span class="old-price" id="oldPrice"></span>
+            <span class="discount" id="discount"></span>
+          </div>
+
           <p id="productDesc"></p>
 
-          <a id="whatsappBtn" target="_blank">
-            <button>Order on WhatsApp</button>
-          </a>
+          <ul class="features">
+            <li>🚚 Free Delivery</li>
+            <li>💵 Cash on Delivery Available</li>
+            <li>✅ 7 Days Replacement</li>
+          </ul>
         </div>
       </section>
 
-      <section class="related">
-        <h2>Related Products</h2>
+      <!-- RELATED PRODUCTS -->
+      <section class="related-section">
+        <h2>You may also like</h2>
 
         <div class="related-grid" id="relatedProducts">
-          <!-- related items here -->
+          <!-- product cards -->
         </div>
       </section>
     </main>
+    <!-- STICKY ACTION BAR -->
+    <div class="product-action-bar">
+      <button class="btn-cart">Add to Cart</button>
+      <a id="whatsappBtn" target="_blank">
+        <button class="btn-whatsapp">Order on WhatsApp</button>
+      </a>
+    </div>
 
-    <script src="product.js"></script>
+    <script src="/js/product.js"></script>
   </body>
 </html>
