@@ -38,16 +38,22 @@
     <main class="product-detail-page">
       <!-- PRODUCT TOP -->
       <section class="product-top">
-        <div class="product-image">
-          <img id="productImg" src="images/img1.jpeg" alt="Product" />
-          <div class="image-actions">
-            <!-- <span class="wishlist-btn">♡</span> -->
-            <span class="share-btn" id="shareBtn">🔗</span>
-          </div>
-          <!-- Thumbnails -->
-          <div class="thumbs" id="thumbs"></div>
+        <!-- Thumbnails -->
+        <div class="thumbs" id="thumbs">
+          <img src="img1.jpg" />
+          <img src="img2.jpg" />
+          <img src="img3.jpg" />
         </div>
+        <!-- Main Image -->
+        <div class="main-image">
+          <img id="productImg" src="" alt="Product" />
 
+          <span class="share-btn" id="shareBtn">
+            <i class="fa-solid fa-share-nodes"></i>
+          </span>
+          <button class="close-btn" onclick="history.back()">✖</button>
+        </div>
+        <!-- Product Info -->
         <div class="product-detail-info">
           <h1 id="productName"></h1>
 
@@ -60,9 +66,9 @@
           <p id="productDesc"></p>
 
           <ul class="features">
-            <li>🚚 Free Delivery</li>
-            <li>💵 Cash on Delivery Available</li>
-            <li>✅ 7 Days Replacement</li>
+            <li><i class="fa fa-truck"></i> Free Delivery</li>
+            <li><i class="fa fa-money-bill"></i> Cash on Delivery</li>
+            <li><i class="fa fa-check"></i> 7 Days Replacement</li>
           </ul>
         </div>
       </section>
@@ -73,14 +79,20 @@
 
         <div class="related-grid" id="relatedProducts">
           <!-- product cards -->
+
+          <div class="related-card">
+            <img src="images/img3.jpeg" />
+            <p>Moon Lamp</p>
+            <span>Rs. 699</span>
+          </div>
         </div>
       </section>
     </main>
     <!-- STICKY ACTION BAR -->
     <div class="product-action-bar">
       <button class="btn-cart">Add to Cart</button>
-      <a id="whatsappBtn" target="_blank">
-        <button class="btn-whatsapp">Order on WhatsApp</button>
+      <a id="whatsappBtn" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
       </a>
     </div>
 
