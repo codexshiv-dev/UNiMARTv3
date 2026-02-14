@@ -361,6 +361,7 @@ img {
   justify-content: center;
   overflow: hidden;
    width: 100%;
+  padding: 0;
   /* height: 160px;  */
 }
 .product-card img {
