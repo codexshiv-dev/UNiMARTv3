@@ -1,18 +1,18 @@
 // =====================
 // GET URL PARAMS
 // =====================
-const params = new URLSearchParams(window.location.search);
-const name = params.get("name");
-const price = params.get("price");
-const desc = params.get("desc");
-const img = params.get("img");
+if (window.location.pathname.includes("product.html")) {
 
-// If no product data → go back home
-if (!name || !price || !img) {
-  alert("No product data found. Please go back to shop.");
-  window.location.href = "index.html";
-}
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name");
+  const price = params.get("price");
+  const desc = params.get("desc");
+  const img = params.get("img");
 
+  if (!name || !price || !img) {
+    alert("No product data found. Please go back to shop.");
+    window.location.href = "index.html";
+  }
 // =====================
 // MULTIPLE IMAGES (for demo)
 // =====================
@@ -21,11 +21,13 @@ const images = [img, img, img];
 // =====================
 // SET PRODUCT DATA
 // =====================
-document.getElementById("productName").textContent = name;
-document.getElementById("productPrice").textContent = "Rs. " + price;
-document.getElementById("oldPrice").textContent = "Rs. " + (price * 1.3).toFixed(0);
-document.getElementById("discount").textContent = "30% OFF";
-document.getElementById("productDesc").textContent = desc;
+
+  document.getElementById("productName").textContent = name;
+  document.getElementById("productPrice").textContent = "Rs. " + price;
+  document.getElementById("oldPrice").textContent = "Rs. " + (price * 1.3).toFixed(0);
+  document.getElementById("discount").textContent = "30% OFF";
+  document.getElementById("productDesc").textContent = desc;
+
 
 // =====================
 // MAIN IMAGE & THUMBNAILS
@@ -65,18 +67,16 @@ document.getElementById("whatsappBtn").href =
 const shareBtn = document.getElementById("shareBtn");
 
 shareBtn.addEventListener("click", () => {
-  const shareData = {
-    title: name,
-    text: `Check this product: ${name}`,
-    url: window.location.href
-  };
-
   if (navigator.share) {
-    navigator.share(shareData);
-  } else {
-    navigator.clipboard.writeText(window.location.href);
-    alert("Product link copied!");
-  }
+      navigator.share({
+        title: name,
+        text: `Check this product: ${name}`,
+        url: window.location.href
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Product link copied!");
+    }
 });
 
 // =====================
@@ -114,3 +114,4 @@ relatedProducts.forEach(p => {
 
   relatedDiv.appendChild(card);
 });
+}

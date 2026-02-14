@@ -29,6 +29,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yourdomain.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/script.js"></script>
+    <script src="js/product.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -138,11 +140,19 @@
 
         <button class="clear-btn">Clear All</button>
       </aside>
+      <p
+        id="noResult"
+        style="
+          display: none;
+          text-align: center;
+          font-size: 16px;
+          margin-top: 20px;
+        ">
+        ❌ No products found
+      </p>
 
       <!-- PRODUCTS -->
       <section class="product-grid">
-        <p id="noResult" style="display: none">No products found</p>
-
         <article
           class="product-card"
           data-id="2"
@@ -163,7 +173,7 @@
           ">
           <div class="product-img">
             <img
-              src="/images/img2.jpeg"
+              src="images/img2.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image'" />
@@ -210,7 +220,7 @@
           ">
           <div class="product-img">
             <img
-              src="/images/img2.jpeg"
+              src="images/img2.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image'" />
@@ -245,7 +255,7 @@
           data-discount="53">
           <div class="product-img">
             <img
-              src="/images/img2.jpeg"
+              src="images/img2.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image'" />
@@ -288,7 +298,7 @@
           ">
           <div class="product-img">
             <img
-              src="/images/img3.jpeg"
+              src="images/img3.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image.png'" />
@@ -321,7 +331,7 @@
           data-discount="38">
           <div class="product-img">
             <img
-              src="/images/img3.jpeg"
+              src="images/img3.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image.png'" />
@@ -354,7 +364,7 @@
           data-discount="38">
           <div class="product-img">
             <img
-              src="/images/img3.jpeg"
+              src="images/img3.jpeg"
               alt="Panda Night Lamp for Kids"
               loading="lazy"
               onerror="this.src = 'images/no-image.png'" />
