@@ -57,22 +57,24 @@ body {
   overflow-x: hidden;
   overflow-y: auto;   
   overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
 }
 
-.section {
-  padding: 60px 40px;
-}
 
-.container {
+/* .container {
   max-width: 1200px;
   margin: auto;
-}
+} */
 img {
   max-width: 100%;
   display: block;
 }
 
-
+main.layout {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 /* =====================================================
    3. LAYOUT (Header, Hero, Sections)
 ===================================================== */
@@ -116,14 +118,18 @@ img {
   height: 40px;
    filter: brightness(0) ; /* quick CSS trick */
 }
+/* ===== HAMBURGER ===== */
 .hamburger {
-   background: none;
+  
+  display: none;
+  background: none;
   border: none;
   font-size: 22px;
-  color:var(--text-dark);
   cursor: pointer;
+  color:var(--text-dark);
+
 }
-/* ===== HAMBURGER ===== */
+
 /* .menu-btn {
   width: 28px;
   height: 20px;
@@ -212,121 +218,288 @@ img {
 .header-search input:focus {
   box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
 }
-
-
-
-
-
-/* Mobile menu */
+/* ===== MOBILE MENU ===== */
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: -260px;
-  width: 260px;
-  height: 100%;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
   background: #fff;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.15);
-  transition: 0.3s;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  transform: translateX(0);
   z-index: 2000;
+  display: flex;
+  flex-direction: column;
+   padding: 15px;
 }
 
+/* Active state */
 .mobile-menu.active {
-  left: 0;
+  transform: translateX(280px);
 }
 
+/* Header */
 .mobile-menu-header {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
+  padding: 16px;
   background: var(--primary);
   color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+   margin-bottom: 15px;
 }
 
+.mobile-menu-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Nav links */
 .mobile-nav {
   display: flex;
   flex-direction: column;
+  padding: 10px 0;
 }
 
 .mobile-nav a {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
+  padding: 14px 20px;
   text-decoration: none;
-  color: #333;
+  color: #222;
+  font-size: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+
+  border-radius: 6px;
+    display: block;
+    padding: 10px;
+}
+
+.mobile-nav a:hover {
+  background: #f7f7f7;
 }
 
 /* Overlay */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  display: none;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
   z-index: 1500;
 }
 
 .overlay.active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
+/* Prevent body scroll when menu open */
+body.menu-open {
+  overflow: hidden;
+}
 
+/* Hide mobile menu on desktop */
+@media (min-width: 769px) {
+  .mobile-menu,
+  .overlay {
+    display: none;
+  }
+}
+/* for hamburger menu section cateriores css for dropdown */
+.dropdown-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
 
-/* HEADER */
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  background: #f7f7f7;
+}
+
+.dropdown-menu button {
+  border: none;
+  background: transparent;
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  
+}
+/* mobile category dropdown css */
+.mobile-category {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: #fff;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+/* hover */
+.mobile-category:hover {
+  background: #f2f2f2;
+}
+
+/* active selected */
+.mobile-category.active {
+  background: #e8f0ff;
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* sidebar seciton css */
 /* LAYOUT */
 .layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  align-items: start;
+
+  /* width: 100%; */
+  /* max-width: 1400px; */
+  /* margin: 0 auto; */
+  /* padding: 12px 12px 40px; */
+}
+
+/* product column */
+.products-wrapper {
+  width: 100%;
 }
 
 /* SIDEBAR */
 .filters {
-  width: 260px;
-  background: white;
+  background: #fff;
   padding: 15px;
-  border-right: 1px solid #ddd;
-}
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  position: sticky;
+  top: 80px; /* height of header */
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 
+  /* align-self: start; */
+}
 .filters h2 {
+  font-size: 18px;
   margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
 }
 
 .filters section {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
-
-.filters ul {
-  list-style: none;
+.filters h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
 }
-
-.filters li {
-  padding: 6px 0;
+.category-card {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  text-align: left;
+  border-radius: 6px;
+  border: none;
+  background: #f3f3f3;
+  margin-bottom: 6px;
   cursor: pointer;
 }
 
-.clear-btn {
+.category-card.active {
+  background: var(--primary);
+  color: #000;
+  font-weight: 600;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* .filters ul {
+  list-style: none;
+} */
+
+/* .filters li {
+  padding: 6px 0;
+  cursor: pointer;
+} */
+
+/* .clear-btn {
   width: 100%;
   padding: 10px;
   background: #c89b3c;
   color: white;
   border: none;
   border-radius: 5px;
-}
-
-.category-card.active {
-  background: #d4af37;
-  color: #000;
-  font-weight: 600;
-}
+} */
 
 
 
-/* ==============================
-   PRODUCT GRID
-================================ */
-.product-grid {
+/* .product-grid {
   padding: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
   width: 100%;
   
+} */
+
+/* grid of products */
+.product-grid {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  width: 100%;
+  align-content: start;
+}
+/* ==============================
+  Pagination
+================================ */
+
+.pagination {
+   /* grid-column: 2 / 3;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 30px 0 10px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 /* ==============================
@@ -354,15 +527,14 @@ img {
 .product-img {
   position: relative;
   background: #f9fafb;
-  /* height: 180px; */
-
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-   width: 100%;
+  /* width: 100%; */
   padding: 0;
-  /* height: 160px;  */
+  
 }
 .product-card img {
   width: 100%;
@@ -774,7 +946,7 @@ img {
   background: #0f0f14;
   color: #ccc;
   padding: 50px 20px 20px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .footer-container {
@@ -825,7 +997,7 @@ img {
   font-size: 14px;
   margin: 8px 0;
 }
-.footer-col p a {
+.footer-col p a  {
   color: #fff; /* or your footer text color */
   text-decoration: none;
 }
@@ -935,13 +1107,45 @@ img {
     gap: 8px;
   }
 
-  .filters {
-    display: none;
+   .layout {
+    grid-template-columns: 1fr;
+    margin:0;
   }
 
-  .layout {
-    flex-direction: column;
+  /* .filters {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100%;
+    z-index: 3000;
+    transition: 0.3s;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+  } */
+   /* .filters {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    z-index: 3000;
+    transition: 0.3s;
+  } */
+  .filters {
+    position: fixed; /* if you want hamburger sidebar */
+    left: -100%;
+    transition: 0.3s;
   }
+
+
+  .filters.active {
+    left: 0;
+  }
+
+
+  /* .layout {
+    flex-direction: column;
+  } */
+
   /* //////////////// */
 
   .product-grid {
@@ -983,6 +1187,16 @@ img {
    .main-image{
     height:300px;
   }
+
+
+   .hamburger {
+    display: block;
+  }
+
+  /* .filters {
+    display: none; 
+  } */
+   
 }
 
 @media (max-width: 480px) {

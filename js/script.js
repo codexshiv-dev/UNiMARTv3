@@ -1,85 +1,141 @@
-// ==========================
-// MOBILE MENU
-// ==========================
-const openMenu = document.getElementById("openMenu");
-const mobileMenu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
-const closeMenu = document.getElementById("closeMenu");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (openMenu) {
-  openMenu.onclick = () => {
-    mobileMenu.classList.add("active");
-    overlay.classList.add("active");
-  };
+  // =======================
+  // GLOBAL STATE
+  // =======================
+  let activeCategory = "all";
+ 
 
-  closeMenu.onclick = () => {
+  // =======================
+  // HAMBURGER MENU
+  // =======================
+  const openMenuBtn = document.getElementById("openMenu");
+  const closeMenuBtn = document.getElementById("closeMenu");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
+
+  function closeMenu() {
     mobileMenu.classList.remove("active");
     overlay.classList.remove("active");
-  };
+    document.body.style.overflow = "auto";
+  }
 
-  overlay.onclick = () => {
-    mobileMenu.classList.remove("active");
-    overlay.classList.remove("active");
-  };
-}
-// ==========================
-//  PRODUCT FILTER + SEARCH
-// ==========================
+  if (openMenuBtn) {
+    openMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("active");
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  }
 
-const products = document.querySelectorAll(".product-grid .product-card");
-const heroSearch = document.getElementById("heroSearch");
-const categoryButtons = document.querySelectorAll(".category-card");
-const noResult = document.getElementById("noResult");
+  if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
+  if (overlay) overlay.addEventListener("click", closeMenu);
 
-let activeCategory = "all";
 
-// ================= CATEGORY CLICK =================
-categoryButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    activeCategory = btn.dataset.category;
+  // =======================
+  // SEARCH & FILTER
+  // =======================
+  const searchDesktop = document.getElementById("searchInputDesktop");
+  const searchMobile = document.getElementById("searchInputMobile");
 
-    // active style
-    categoryButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+  const categoryButtons = document.querySelectorAll(".category-card");
+  const mobileCategories = document.querySelectorAll(".mobile-category");
+  const products = document.querySelectorAll(".product-card");
+  const noResult = document.getElementById("noResult");
 
-    filterProducts();
-  });
-});
+  function filterProducts() {
+    const textDesktop = searchDesktop ? searchDesktop.value : "";
+    const textMobile = searchMobile ? searchMobile.value : "";
+    const searchText = (textDesktop || textMobile).toLowerCase().trim();
 
-// ================= SEARCH INPUT =================
-heroSearch.addEventListener("input", filterProducts);
+    let found = false;
 
-// =======================
-// MAIN FILTER FUNCTION
-// =======================
-function filterProducts() {
-  const searchText = heroSearch.value.toLowerCase().trim();
-  let found = false;
+    products.forEach(card => {
+      const title = card.querySelector(".product-title")?.textContent.toLowerCase() || "";
+      const desc = card.dataset.desc?.toLowerCase() || "";
+      const category = card.dataset.category;
 
-  products.forEach(card => {
-    const title = card.querySelector(".product-title").textContent.toLowerCase();
-    const desc = card.dataset.desc.toLowerCase();
-    const category = card.dataset.category;
+      const matchSearch = title.includes(searchText) || desc.includes(searchText);
+      const matchCategory = activeCategory === "all" || category === activeCategory;
 
-    const matchSearch =
-      title.includes(searchText) || desc.includes(searchText);
+      if (matchSearch && matchCategory) {
+        card.style.display = "block";
+        found = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
 
-    const matchCategory =
-      activeCategory === "all" || category === activeCategory;
-
-    if (matchSearch && matchCategory) {
-      card.style.display = "block";
-      found = true;
-    } else {
-      card.style.display = "none";
+    if (noResult) {
+      noResult.style.display = found ? "none" : "block";
     }
-  });
-}
-
-  // Optional no result message
-  if (noResult) {
-    noResult.style.display = found ? "none" : "block";
   }
 
 
-// Events
+  // =======================
+  // DESKTOP CATEGORIES
+  // =======================
+  categoryButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.category;
+     
+
+      categoryButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      mobileCategories.forEach(b => {
+        b.classList.toggle("active", b.dataset.category === activeCategory);
+      });
+
+      filterProducts();
+    });
+  });
+
+
+  // =======================
+  // MOBILE CATEGORIES
+  // =======================
+  mobileCategories.forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.category;
+    
+
+      mobileCategories.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      categoryButtons.forEach(b => {
+        b.classList.toggle("active", b.dataset.category === activeCategory);
+      });
+
+      filterProducts();
+      closeMenu();
+    });
+  });
+
+
+  // =======================
+  // SEARCH INPUTS
+  // =======================
+  if (searchDesktop) searchDesktop.addEventListener("input", filterProducts);
+  if (searchMobile) searchMobile.addEventListener("input", filterProducts);
+
+
+  // =======================
+  // DROPDOWN TOGGLE
+  // =======================
+  const dropdownToggle = document.querySelector(".dropdown-toggle");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener("click", () => {
+      dropdownMenu.classList.toggle("show");
+    });
+  }
+
+
+  // =======================
+  // INITIAL LOAD (show all)
+  // =======================
+  filterProducts();
+
+});
