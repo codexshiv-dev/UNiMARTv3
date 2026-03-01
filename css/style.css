@@ -90,12 +90,14 @@ main.layout {
     #c89b3c,
     #a77c2c
   ); */
-  background: linear-gradient(to right,
+  /* background: linear-gradient(to right,
     var(--primary-light),
     var(--primary)
-  );
+  ); */
+   background:var(--primary); 
     box-shadow: var(--shadow-sm);
   }
+  
 
 /* Top row */
 .header-top {
@@ -115,7 +117,7 @@ main.layout {
 }
 
 .logo img {
-  height: 40px;
+  height: 50px;
    filter: brightness(0) ; /* quick CSS trick */
 }
 /* ===== HAMBURGER ===== */
@@ -124,7 +126,7 @@ main.layout {
   display: none;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 27px;
   cursor: pointer;
   color:var(--text-dark);
 
@@ -148,7 +150,7 @@ main.layout {
 .header-right a,
 .hamburger {
  color: var(--text-dark);
-  font-size: 18px;
+  font-size: 27px;
 }
 .header-right a {
   color:var(--text-dark);
@@ -958,7 +960,7 @@ body.menu-open {
 }
 
 .footer-logo {
-  width: 140px;
+  width: 190px;
   margin-bottom: 15px;
 }
 
