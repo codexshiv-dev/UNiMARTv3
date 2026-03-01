@@ -139,3 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
   filterProducts();
 
 });
+
+
+

@@ -89,29 +89,36 @@ const relatedProducts = [
 ];
 
 const relatedDiv = document.getElementById("relatedProducts");
+relatedDiv.innerHTML = "";
 
 relatedProducts.forEach(p => {
   const card = document.createElement("article");
   card.className = "product-card";
 
   card.innerHTML = `
-    <div class="main-image">
+    <div class="product-img">
       <img src="${p.img}" alt="${p.name}">
     </div>
+
     <div class="product-info">
       <h3>${p.name}</h3>
-      <p>Rs.${p.price}</p>
+      <p class="short-desc">${p.desc}</p>
+
+      <div class="price-row">
+        <span class="price">Rs. ${p.price}</span>
+      </div>
     </div>
   `;
 
-  card.onclick = () => {
+  card.addEventListener("click", () => {
     const url = `product.html?name=${encodeURIComponent(p.name)}
 &price=${encodeURIComponent(p.price)}
 &desc=${encodeURIComponent(p.desc)}
 &img=${encodeURIComponent(p.img)}`;
     window.location.href = url;
-  };
+  });
 
   relatedDiv.appendChild(card);
 });
+
 }

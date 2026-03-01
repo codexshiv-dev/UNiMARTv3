@@ -861,14 +861,14 @@ body.menu-open {
 .related-grid{
   display:grid;
   grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-  gap:12px;
+  gap:14px;
 }
 
 .related-grid .product-card {
-  background: #fff;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  
 }
 
 .related-grid img {
