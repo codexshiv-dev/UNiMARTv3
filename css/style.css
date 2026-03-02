@@ -109,6 +109,7 @@ main.layout {
   border: none;
   font-size: 27px;
   cursor: pointer;
+  margin-right: 5px;
 }
 
 /* Right icons */
@@ -1024,7 +1025,7 @@ body.menu-open {
 }
 
 .footer-location:hover {
-  color: #25d366;
+  color: var(--primary);
   text-decoration: underline;
 }
 
@@ -1049,11 +1050,12 @@ body.menu-open {
 /* WhatsApp Floating Button */
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: 20px;
   width: 56px;
   height: 56px;
   background: #25d366;
+   /* background: #F59E0B; */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1067,7 +1069,7 @@ body.menu-open {
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
