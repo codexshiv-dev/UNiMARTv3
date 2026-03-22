@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unimart - Product Details</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <a href="index.html">⬅ Back to Shop</a>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="product-detail-page">
+      <!-- PRODUCT TOP -->
+      <section class="product-top">
+        <!-- Thumbnails -->
+        <div class="thumbs" id="thumbs"></div>
+
+        <!-- Main Image -->
+        <div class="main-image">
+          <img id="productImg" src="" alt="Product" />
+          <span class="share-btn" id="shareBtn">
+            <i class="fa-solid fa-share-nodes"></i>
+          </span>
+          <button class="close-btn" onclick="history.back()">✖</button>
+        </div>
+
+        <!-- Stock / SKU -->
+        <p id="productStock"></p>
+        <p id="productSKU"></p>
+
+        <!-- Tags -->
+        <ul id="productTags"></ul>
+
+        <!-- Product Info -->
+        <div class="product-detail-info">
+          <h1 id="productName"></h1>
+
+          <div class="price-row">
+            <span class="price" id="productPrice"></span>
+            <span class="old-price" id="oldPrice"></span>
+            <span class="discount" id="discount"></span>
+          </div>
+
+          <p id="productDesc"></p>
+
+          <ul class="features">
+            <li><i class="fa fa-truck"></i> Free Delivery</li>
+            <li><i class="fa fa-money-bill"></i> Cash on Delivery</li>
+            <li><i class="fa fa-check"></i> 7 Days Replacement</li>
+          </ul>
+
+          <!-- Ratings -->
+          <div id="productRating"></div>
+
+          <!-- Reviews -->
+          <div id="productReviews"></div>
+        </div>
+      </section>
+
+      <!-- RELATED PRODUCTS -->
+      <section class="related-section">
+        <h2>You may also like</h2>
+        <div class="related-grid" id="relatedProducts"></div>
+      </section>
+    </main>
+
+    <!-- STICKY ACTION BAR -->
+    <div class="product-action-bar">
+      <button class="btn-cart" id="btnCart">Add to Cart</button>
+      <a id="whatsappBtn" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+      </a>
+    </div>
+
+    <!-- LINK TO EXTERNAL JS -->
+    <script src="./js/product.js"></script>
+  </body>
+</html>

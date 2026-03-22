@@ -24,11 +24,7 @@
     <meta
       property="og:description"
       content="Smart gadgets, toys & night lights for kids. Order easily via WhatsApp." />
-    <meta
-      property="og:image"
-      content="https://yourdomain.com/images/icon/logo.svg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
@@ -64,8 +60,9 @@
           <a href="#" aria-label="Wishlist"
             ><i class="fa-regular fa-heart"></i
           ></a>
-          <a href="#" aria-label="Cart"
-            ><i class="fa-solid fa-cart-shopping"></i>
+          <a href="cart.html" aria-label="Cart"
+            ><i class="cart-icon fa-solid fa-cart-shopping"></i>
+            <span id="cartCount" class="cart-count">0</span>
           </a>
           <a href="#" aria-label="Account"
             ><i class="fa-regular fa-user"></i
@@ -183,10 +180,9 @@
       </aside>
 
       <section class="products-wrapper">
-        <p id="noResult" style="display: none">❌ No products found</p>
-        <!-- PRODUCTS -->
+        <!-- PRODUCT GRID -->
         <section class="product-grid" id="productGrid">
-          <article
+          <!-- <article
             class="product-card"
             data-id="2"
             data-name="Panda Night Lamp for Kids"
@@ -211,7 +207,7 @@
                 loading="lazy"
                 onerror="this.src = 'images/no-image'" />
 
-              <!-- Wishlist button (stop click bubbling) -->
+          
               <span
                 class="wishlist"
                 aria-label="Add to wishlist"
@@ -229,228 +225,17 @@
                 <span class="old-price">₹1499</span>
                 <span class="discount">53% OFF</span>
               </div>
-
-              <!-- <button class="view-btn">View Product</button> -->
             </div>
-          </article>
-          <article
-            class="product-card"
-            data-id="2"
-            data-name="Panda Night Lamp for Kids"
-            data-price="699"
-            data-oldprice="1499"
-            data-category="lights"
-            data-desc="Soft LED night light for kids room"
-            data-img="/images/img2.jpeg"
-            data-discount="53"
-            onclick="
-              openProduct(
-                this.dataset.name,
-                this.dataset.price,
-                this.dataset.desc,
-                this.dataset.img,
-              )
-            ">
-            <div class="product-img">
-              <img
-                src="images/img2.jpeg"
-                alt="Panda Night Lamp for Kids"
-                loading="lazy"
-                onerror="this.src = 'images/no-image'" />
-
-              <!-- Wishlist button (stop click bubbling) -->
-              <span
-                class="wishlist"
-                aria-label="Add to wishlist"
-                onclick="event.stopPropagation()">
-                <i class="fa fa-heart"></i>
-              </span>
-            </div>
-
-            <div class="product-info">
-              <h3 class="product-title">Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-
-              <!-- <button class="view-btn">View Product</button> -->
-            </div>
-          </article>
-          <article
-            class="product-card"
-            data-id="2"
-            data-name="Panda Night Lamp for Kids"
-            data-price="699"
-            data-oldprice="1499"
-            data-category="lights"
-            data-desc="Soft LED night light for kids room"
-            data-img="/images/img2.jpeg"
-            data-discount="53"
-            onclick="
-              openProduct(
-                this.dataset.name,
-                this.dataset.price,
-                this.dataset.desc,
-                this.dataset.img,
-              )
-            ">
-            <div class="product-img">
-              <img
-                src="images/img2.jpeg"
-                alt="Panda Night Lamp for Kids"
-                loading="lazy"
-                onerror="this.src = 'images/no-image'" />
-
-              <!-- Wishlist button (stop click bubbling) -->
-              <span
-                class="wishlist"
-                aria-label="Add to wishlist"
-                onclick="event.stopPropagation()">
-                <i class="fa fa-heart"></i>
-              </span>
-            </div>
-
-            <div class="product-info">
-              <h3 class="product-title">Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-
-              <!-- <button class="view-btn">View Product</button> -->
-            </div>
-          </article>
-          <article
-            class="product-card"
-            data-id="2"
-            data-name="Panda Night Lamp for Kids"
-            data-price="699"
-            data-oldprice="1499"
-            data-category="lights"
-            data-desc="Soft LED night light for kids room"
-            data-img="/images/img2.jpeg"
-            data-discount="53"
-            onclick="
-              openProduct(
-                this.dataset.name,
-                this.dataset.price,
-                this.dataset.desc,
-                this.dataset.img,
-              )
-            ">
-            <div class="product-img">
-              <img
-                src="images/img2.jpeg"
-                alt="Panda Night Lamp for Kids"
-                loading="lazy"
-                onerror="this.src = 'images/no-image'" />
-
-              <!-- Wishlist button (stop click bubbling) -->
-              <span
-                class="wishlist"
-                aria-label="Add to wishlist"
-                onclick="event.stopPropagation()">
-                <i class="fa fa-heart"></i>
-              </span>
-            </div>
-
-            <div class="product-info">
-              <h3 class="product-title">Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-
-              <!-- <button class="view-btn">View Product</button> -->
-            </div>
-          </article>
-          <article
-            class="product-card"
-            data-id="2"
-            data-name="Panda Night Lamp for Kids"
-            data-price="699"
-            data-oldprice="1499"
-            data-category="toys"
-            data-desc="Soft LED night light for kids room"
-            data-img="/images/img2.jpeg"
-            data-discount="53"
-            onclick="
-              openProduct(
-                this.dataset.name,
-                this.dataset.price,
-                this.dataset.desc,
-                this.dataset.img,
-              )
-            ">
-            <div class="product-img">
-              <img
-                src="images/img2.jpeg"
-                alt="Panda Night Lamp for Kids"
-                loading="lazy"
-                onerror="this.src = 'images/no-image'" />
-
-              <span class="wishlist" aria-label="Add to wishlist"
-                ><i class="fa fa-heart"></i
-              ></span>
-            </div>
-
-            <div class="product-info">
-              <h3 class="product-title">Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-
-              <!-- <button class="view-btn">View Product</button> -->
-            </div>
-          </article>
-
-          <!-- <article class="product-card">
-          <div class="product-card">
-            <div class="product-img">
-              <img
-                src="/images/img4.jpeg"
-                alt="Panda Night Lamp for Kids"
-                loading="lazy"
-                onerror="this.src = 'images/no-image.png'" />
-              <span class="wishlist" aria-label="Add to wishlist"
-                ><i class="fa fa-heart"></i
-              ></span>
-            </div>
-
-            <div class="product-info">
-              <h3>Panda Night Lamp for Kids</h3>
-              <p class="short-desc">Soft LED night light for kids room</p>
-
-              <div class="price-row">
-                <span class="price">₹699</span>
-                <span class="old-price">₹1499</span>
-                <span class="discount">53% OFF</span>
-              </div>
-              <button class="view-btn">View Product</button>
-            </div>
-          </div>
-        </article> -->
+          </article>-->
+          <!-- Dynamic JS will populate products here -->
         </section>
-        <div class="pagination">
-          <button>Previous</button>
+        <p id="noResult" style="display: none"></p>
+        <div class="pagination" id="pagination">
+          <!-- <button>Previous</button>
           <button class="active">1</button>
           <button>2</button>
           <button>3</button>
-          <button>Next</button>
+          <button>Next</button> -->
         </div>
       </section>
     </main>
@@ -565,23 +350,12 @@
       aria-label="Chat on WhatsApp">
       <img src="images/icon/whatsapp1.svg" alt="WhatsApp" />
     </a>
-
-    <script>
-      function openProduct(name, price, desc, img) {
-        const url =
-          "product.html?name=" +
-          encodeURIComponent(name) +
-          "&price=" +
-          encodeURIComponent(price) +
-          "&desc=" +
-          encodeURIComponent(desc) +
-          "&img=" +
-          encodeURIComponent(img);
-
-        window.location.href = url;
-      }
-    </script>
+    <!-- ===================== -->
+    <!-- DYNAMIC PRODUCT GRID -->
+    <!-- ===================== -->
+    <!-- fetch & render -->
     <script src="./js/script.js"></script>
+    <!-- filter/search -->
     <script src="./js/product.js"></script>
   </body>
 </html>

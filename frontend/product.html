@@ -2,94 +2,182 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Product Details</title>
+    <title>Unimart - Product Details</title>
+
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link
-      rel="icon"
-      type="images/png"
-      sizes="32x32"
-      href="./images/icon/favicon-letter.svg" />
-    <meta
-      name="description"
-      content="Unimart offers smart gadgets, kids toys, night lamps and home decor in Nepal. Order easily via WhatsApp. Fast delivery & trusted store." />
-    <meta
-      name="keywords"
-      content="unimart, gadgets nepal, kids toys nepal, night lamp nepal, online store nepal" />
-    <meta name="author" content="Unimart" />
-    <meta property="og:title" content="Unimart - Smart Gadgets Store" />
-    <meta
-      property="og:description"
-      content="Smart gadgets, toys & night lights for kids. Order easily via WhatsApp." />
-    <meta
-      property="og:image"
-      content="https://yourdomain.com/images/icon/logo.svg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .product-container {
+        display: flex;
+        gap: 40px;
+        padding: 20px;
+      }
+
+      .product-images {
+        flex: 1;
+      }
+
+      .product-info-box {
+        flex: 1;
+      }
+
+      .main-image img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .thumbs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .thumbs img {
+        width: 60px;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .thumbs img.active {
+        border: 2px solid #000;
+      }
+
+      .qty-box {
+        display: flex;
+        gap: 10px;
+        margin: 15px 0;
+      }
+
+      .qty-box button {
+        width: 35px;
+        height: 35px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin: 15px 0;
+      }
+
+      .btn-cart {
+        background: orange;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .btn-buy {
+        background: #ff5722;
+        color: #fff;
+        border: none;
+        padding: 10px;
+      }
+
+      .product-action-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+      }
+
+      .product-action-bar button {
+        flex: 1;
+        padding: 15px;
+      }
+    </style>
   </head>
+
   <body>
+    <!-- ================= HEADER ================= -->
     <header class="site-header">
-      <a href="index.html">⬅ Back to Shop</a>
+      <a href="index.html" class="back-btn">⬅ Back to Shop</a>
     </header>
 
+    <!-- ================= MAIN ================= -->
     <main class="product-detail-page">
-      <!-- PRODUCT TOP -->
-      <section class="product-top">
-        <!-- Thumbnails -->
-        <div class="thumbs" id="thumbs">
-          <img src="./img1.jpg" />
-          <img src="./img2.jpg" />
-          <img src="./img3.jpg" />
-        </div>
-        <!-- Main Image -->
-        <div class="main-image">
-          <img id="productImg" src="" alt="Product" />
+      <section class="product-container">
+        <!-- ===== LEFT: IMAGES ===== -->
+        <div class="product-images">
+          <div class="thumbs" id="thumbs"></div>
 
-          <span class="share-btn" id="shareBtn">
-            <i class="fa-solid fa-share-nodes"></i>
-          </span>
-          <button class="close-btn" onclick="history.back()">✖</button>
+          <div class="main-image">
+            <img id="productImg" src="" alt="Product" />
+            <span class="share-btn" id="shareBtn">
+              <i class="fa-solid fa-share-nodes"></i>
+            </span>
+          </div>
         </div>
-        <!-- Product Info -->
-        <div class="product-detail-info">
+
+        <!-- ===== RIGHT: DETAILS ===== -->
+        <div class="product-info-box">
           <h1 id="productName"></h1>
 
+          <!-- PRICE -->
           <div class="price-row">
             <span class="price" id="productPrice"></span>
             <span class="old-price" id="oldPrice"></span>
             <span class="discount" id="discount"></span>
           </div>
 
-          <p id="productDesc"></p>
+          <!-- STOCK -->
+          <p id="productStock"></p>
+          <p id="productSKU"></p>
 
+          <!-- TAGS -->
+          <ul id="productTags" class="tags"></ul>
+
+          <!-- DESCRIPTION -->
+          <p id="productDesc" class="desc"></p>
+
+          <!-- FEATURES -->
           <ul class="features">
             <li><i class="fa fa-truck"></i> Free Delivery</li>
             <li><i class="fa fa-money-bill"></i> Cash on Delivery</li>
             <li><i class="fa fa-check"></i> 7 Days Replacement</li>
           </ul>
+
+          <!-- ⭐ RATING -->
+          <div id="productRating"></div>
+
+          <!-- 📝 REVIEWS -->
+          <div id="productReviews"></div>
+
+          <!-- 🔢 QUANTITY -->
+          <div class="qty-box">
+            <button id="qtyMinus">−</button>
+            <input type="number" id="qtyInput" value="1" min="1" />
+            <button id="qtyPlus">+</button>
+          </div>
+
+          <!-- 🛒 ACTION BUTTONS -->
+          <!-- ACTION BUTTONS -->
+          <div class="action-buttons">
+            <button id="btnCart" class="btn-cart">Add to Cart</button>
+            <a id="whatsappBtn" class="btn-whatsapp" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order Now
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- RELATED PRODUCTS -->
+      <!-- ================= RELATED ================= -->
       <section class="related-section">
         <h2>You may also like</h2>
-
-        <div class="related-grid" id="relatedProducts">
-          <!-- product cards -->
-        </div>
+        <div class="related-grid" id="relatedProducts"></div>
       </section>
     </main>
-    <!-- STICKY ACTION BAR -->
+
+    <!-- ================= STICKY MOBILE BAR ================= -->
     <div class="product-action-bar">
-      <button class="btn-cart">Add to Cart</button>
-      <a id="whatsappBtn" target="_blank" class="btn-whatsapp">
-        <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
-      </a>
+      <button class="btn-cart" id="btnCartMobile">Add to Cart</button>
+      <button class="btn-buy" id="btnBuyMobile">Buy Now</button>
     </div>
 
+    <!-- ================= JS ================= -->
     <script src="./js/product.js"></script>
   </body>
 </html>
