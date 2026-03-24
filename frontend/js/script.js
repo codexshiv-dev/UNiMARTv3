@@ -21,28 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchMobile = document.getElementById("searchInputMobile");
   const categoryButtons = document.querySelectorAll(".category-card");
   const mobileCategories = document.querySelectorAll(".mobile-category");
-  const openMenuBtn = document.getElementById("openMenu");
-  const closeMenuBtn = document.getElementById("closeMenu");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("overlay");
-
-  // =======================
-  // HAMBURGER MENU
-  // =======================
-  function closeMenu() {
-    mobileMenu.classList.remove("active");
-    overlay.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  openMenuBtn?.addEventListener("click", () => {
-    mobileMenu.classList.add("active");
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
-
-  closeMenuBtn?.addEventListener("click", closeMenu);
-  overlay?.addEventListener("click", closeMenu);
 
   // =======================
   // FETCH PRODUCTS FROM BACKEND
@@ -110,13 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (product.isFeatured) ribbon += `<span class="ribbon featured">FEATURED</span>`;
       if (product.isBestSeller) ribbon += `<span class="ribbon best-seller">BESTSELLER</span>`;
 
+
       // Star ratings
       let stars = "";
       if (product.ratings) {
         const fullStars = Math.floor(product.ratings);
         const halfStar = product.ratings % 1 >= 0.5 ? 1 : 0;
         const emptyStars = 5 - fullStars - halfStar;
-        stars += '<div class="stars">';
+        stars += '<div class="rating">';
         stars += '★'.repeat(fullStars);
         stars += '½'.repeat(halfStar);
         stars += '☆'.repeat(emptyStars);
@@ -124,9 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       card.innerHTML = `
-        ${ribbon}
+       
         <div class="product-img">
-          <img src="${product.images?.[0] || './images/no-image.png'}" alt="${product.name}" loading="lazy">
+         ${ribbon}
+          <img src="${product.images?.[0] || '../assets/images/no-image.png'}" alt="${product.name}" loading="lazy">
           <span class="wishlist" aria-label="Add to wishlist"><i class="fa fa-heart"></i></span>
         </div>
 
@@ -235,21 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// cart count function 
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// window.addEventListener("load", () => {
+//   const scrollY = sessionStorage.getItem("scrollY");
 
-  const existing = cart.find(item => item._id === product._id);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  updateCartCount(); // 🔥 IMPORTANT
-
-  alert("Added to cart ✅");
-}
+//   if (scrollY) {
+//     window.scrollTo(0, parseInt(scrollY));
+//     sessionStorage.removeItem("scrollY");
+//   }
+// });

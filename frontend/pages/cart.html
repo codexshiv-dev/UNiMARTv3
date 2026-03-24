@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+  <body>
+    <!-- header  -->
+    <div id="header" class="site-header"></div>
+    <header class="site-header">
+      <a href="index.html">⬅ Back to Shop</a>
+    </header>
+    <main class="cart-container">
+      <h2>Your Cart 🛒</h2>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-summary">
+        <h3><span id="totalPrice">0</span></h3>
+        <!-- <button class="checkout-btn">Checkout</button> -->
+        <button class="btn btn-primary" onclick="checkoutWhatsApp()">Order on WhatsApp</button>
+      </div>
+    </main>
+
+    <!-- footer  -->
+    <div id="footer"></div>
+
+    <!-- link  -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/layout.js"></script>
+  </body>
+</html>

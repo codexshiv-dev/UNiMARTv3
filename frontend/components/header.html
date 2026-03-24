@@ -1,0 +1,49 @@
+<header class="site-header">
+  <!-- TOP ROW -->
+  <div class="header-top">
+    <!-- Left -->
+    <div class="header-left">
+      <button class="hamburger" id="openMenu" aria-label="Open Menu">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <div class="logo">
+        <a href="../pages/index.html">
+          <img src="../assets/icons/logo.svg" alt="Unimart Logo"
+        /></a>
+      </div>
+    </div>
+
+    <!-- Desktop Search -->
+    <div class="header-search desktop-search">
+      <input
+        type="text"
+        placeholder="Search your products..."
+        id="searchInputDesktop" />
+      <button aria-label="Search">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <!-- Right -->
+    <div class="header-right footer-social">
+      <a href="#" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+      <a href="../pages/cart.html" aria-label="Cart" class="cart-wrapper"
+        ><i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" class="cart-count">0</span>
+      </a>
+      <a href="#" aria-label="Account"><i class="fa-regular fa-user"></i></a>
+    </div>
+  </div>
+
+  <!-- MOBILE SEARCH ROW -->
+  <form class="header-search mobile-search" role="search">
+    <input
+      type="search"
+      placeholder="Search your products..."
+      id="searchInputMobile" />
+    <button type="submit" aria-label="Search">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</header>

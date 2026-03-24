@@ -1,10 +1,63 @@
-const cartContainer = document.getElementById("cartItems");
-const totalPriceEl = document.getElementById("totalPrice");
+// =====================
+// CART STORAGE HELPERS
+// =====================
+function getCart() {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+// ADD TO CART (GLOBAL)
+function addToCart(product, qty = 1) {
+  const cart = getCart();
+
+  const existing = cart.find(item => item._id === product._id);
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    // cart.push({
+    //   _id: product._id,
+    //   name: product.name,
+    //   price: product.price,
+    //   images: product.images,
+    //   qty: qty
+    // });
+     cart.push({ ...product, qty });
+  }
+
+  saveCart(cart);
+  // updateCartCount();
+  showToast("Added to cart ✅");
+}
+
+// UPDATE CART COUNT
+function updateCartCount() {
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const el = document.getElementById("cartCount");
+  if (el) el.textContent = total;
+}
+
+// RENDER CART PAGE
 function loadCart() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartContainer = document.getElementById("cartItems");
+  const totalPriceEl = document.getElementById("totalPrice");
 
+  if (!cartContainer) return; // only run on cart page
+
+  const cart = getCart();
   cartContainer.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
+    totalPriceEl.innerText = "Total: ₹0";
+    return;
+  }
 
   let total = 0;
 
@@ -12,19 +65,29 @@ function loadCart() {
     total += item.price * item.qty;
 
     const div = document.createElement("div");
+    div.className = "cart-item";
 
     div.innerHTML = `
-      <img src="${item.images?.[0] || './images/no-image.png'}" width="80">
-      <h3>${item.name}</h3>
-      <p>₹${item.price}</p>
+      <img src="${item.images?.[0] || '../assets/images/no-image.png'}" class="cart-img">
 
-      <button onclick="changeQty('${item._id}', -1)">-</button>
-      ${item.qty}
-      <button onclick="changeQty('${item._id}', 1)">+</button>
+      <div class="cart-info">
+        <h3>${item.name}</h3>
+        <p>₹${item.price}</p>
 
-      <button onclick="removeItem('${item._id}')">Remove</button>
-      <hr>
+        <div class="qty-control">
+          <button class="decrease">-</button>
+          <span>${item.qty}</span>
+          <button class="increase">+</button>
+        </div>
+
+        <button class="remove-btn">Remove</button>
+      </div>
     `;
+
+    // ✅ NO inline onclick (better practice)
+    div.querySelector(".increase").onclick = () => changeQty(item._id, 1);
+    div.querySelector(".decrease").onclick = () => changeQty(item._id, -1);
+    div.querySelector(".remove-btn").onclick = () => removeItem(item._id);
 
     cartContainer.appendChild(div);
   });
@@ -32,8 +95,11 @@ function loadCart() {
   totalPriceEl.innerText = "Total: ₹" + total;
 }
 
+// =====================
+// CHANGE QUANTITY
+// =====================
 function changeQty(id, change) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
 
   cart = cart.map(item => {
     if (item._id === id) {
@@ -43,17 +109,28 @@ function changeQty(id, change) {
     return item;
   });
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart(cart);
   loadCart();
+  updateCartCount();
 }
 
+// =====================
+// REMOVE ITEM
+// =====================
 function removeItem(id) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
 
   cart = cart.filter(item => item._id !== id);
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart(cart);
   loadCart();
+  updateCartCount();
 }
 
-loadCart();
+// =====================
+// INIT
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+  loadCart();
+});

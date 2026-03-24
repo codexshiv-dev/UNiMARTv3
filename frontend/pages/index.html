@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Unimart – Smart Gadgets & Kids Products in Nepal</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="../assets/icons/favicon-letter.svg" />
+    <meta
+      name="description"
+      content="Unimart offers smart gadgets, kids toys, night lamps and home decor in Nepal. Order easily via WhatsApp. Fast delivery & trusted store." />
+    <meta
+      name="keywords"
+      content="unimart, gadgets nepal, kids toys nepal, night lamp nepal, online store nepal" />
+    <meta name="author" content="Unimart" />
+    <meta property="og:title" content="Unimart - Smart Gadgets Store" />
+    <meta
+      property="og:description"
+      content="Smart gadgets, toys & night lights for kids. Order easily via WhatsApp." />
+    <meta property="og:type" content="website" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- header -->
+    <div id="header" class="site-header"></div>
+    <!-- Mobile Sidebar Menu -->
+    <aside class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <!-- <span>Menu</span> -->
+        <!-- <h3>Menu</h3> -->
+        <div class="logo">
+          <a href="#">
+            <img src="../assets/icons/logo.svg" alt="Unimart Logo"
+          /></a>
+        </div>
+        <button id="closeMenu">✖</button>
+      </div>
+      <nav class="mobile-nav">
+        <button class="dropdown-toggle">Categories <span>▾</span></button>
+
+        <div class="dropdown-menu">
+          <button class="mobile-category active" data-category="all">
+            All
+          </button>
+          <button class="mobile-category" data-category="lights">
+            💡 Lights
+          </button>
+          <button class="mobile-category" data-category="toys">
+            🧸 Smart Toys
+          </button>
+          <button class="mobile-category" data-category="watches">
+            ⌚ Smart Watches
+          </button>
+          <button class="mobile-category" data-category="decor">
+            🏠 Home Decor
+          </button>
+          <button class="mobile-category" data-category="games">🎮Games</button>
+          <button class="mobile-category" data-category="electronics">
+            🖨 Electronics
+          </button>
+        </div>
+
+        <hr />
+
+        <a href="#">Wishlist</a>
+        <a href="#">Cart</a>
+        <a href="#" class="contact-btn">Contact</a>
+        <div class="product-action-bar">
+          <!-- <button class="btn-cart">Add to Cart</button> -->
+          <a id="whatsappBtn" target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="layout">
+      <!-- FILTER SIDEBAR -->
+      <aside class="filters">
+        <h2>Filters</h2>
+
+        <!-- CATEGORIES -->
+        <section id="categories" class="section dark">
+          <h2>Categories</h2>
+          <div class="categories">
+            <button class="category-card active" data-category="all">
+              All
+            </button>
+            <button class="category-card" data-category="lights">
+              💡 Lights
+            </button>
+            <button class="category-card" data-category="toys">
+              🧸 Smart Toys
+            </button>
+            <button class="category-card" data-category="watches">
+              ⌚ Smart Watches
+            </button>
+            <button class="category-card" data-category="decor">
+              🏠 Home Decor
+            </button>
+            <button class="category-card" data-category="games">
+              🎮 Games
+            </button>
+            <button class="category-card" data-category="electronics">
+              🖨 Electronics
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <h3>Price</h3>
+          <input type="range" />
+        </section>
+
+        <section>
+          <h3>Discount</h3>
+          <input type="range" />
+        </section>
+
+        <button class="clear-btn">Clear All</button>
+      </aside>
+
+      <section class="products-wrapper">
+        <!-- PRODUCT GRID -->
+        <section class="product-grid" id="productGrid">
+          <!-- <article
+            class="product-card"
+            data-id="2"
+            data-name="Panda Night Lamp for Kids"
+            data-price="699"
+            data-oldprice="1499"
+            data-category="lights"
+            data-desc="Soft LED night light for kids room"
+            data-img="/images/img2.jpeg"
+            data-discount="53"
+            onclick="
+              openProduct(
+                this.dataset.name,
+                this.dataset.price,
+                this.dataset.desc,
+                this.dataset.img,
+              )
+            ">
+            <div class="product-img">
+              <img
+                src="images/img2.jpeg"
+                alt="Panda Night Lamp for Kids"
+                loading="lazy"
+                onerror="this.src = 'images/no-image'" />
+
+          
+              <span
+                class="wishlist"
+                aria-label="Add to wishlist"
+                onclick="event.stopPropagation()">
+                <i class="fa fa-heart"></i>
+              </span>
+            </div>
+
+            <div class="product-info">
+              <h3 class="product-title">Panda Night Lamp for Kids</h3>
+              <p class="short-desc">Soft LED night light for kids room</p>
+
+              <div class="price-row">
+                <span class="price">₹699</span>
+                <span class="old-price">₹1499</span>
+                <span class="discount">53% OFF</span>
+              </div>
+            </div>
+          </article>-->
+          <!-- Dynamic JS will populate products here -->
+        </section>
+        <p id="noResult" style="display: none"></p>
+        <div class="pagination" id="pagination">
+          <!-- <button>Previous</button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>Next</button> -->
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <!-- Floating WhatsApp -->
+    <a
+      href="https://wa.me/9779700013011"
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="Chat on WhatsApp">
+      <img src="../assets/icons/whatsapp1.svg" alt="WhatsApp" />
+    </a>
+
+    <!-- JS ORDER IMPORTANT -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

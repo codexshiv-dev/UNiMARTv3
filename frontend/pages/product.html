@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unimart - Product Details</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <div id="header" class="site-header"></div>
+    <header class="back-shop product-header">
+      <a href="index.html">⬅ Back to Shop</a>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="product-page">
+      <section class="product-layout">
+        <!-- ===== LEFT: GALLERY ===== -->
+        <div class="product-gallery">
+          <div class="gallery-grid">
+            <!-- Thumbnails -->
+            <div class="thumbs" id="thumbs"></div>
+
+            <!-- Main Image -->
+            <div class="main-image" id="zoomContainer">
+              <div class="zoom-image" id="zoomImage"></div>
+              <img id="productImg" src="" alt="Product" />
+
+              <span class="share-btn" id="shareBtn">
+                <i class="fa-solid fa-share-nodes"></i>
+              </span>
+
+              <button class="close-btn" onclick="history.back()">✖</button>
+            </div>
+          </div>
+          <!-- TAGS BELOW IMAGE -->
+          <ul id="productTags"></ul>
+        </div>
+
+        <!-- ===== RIGHT: INFO ===== -->
+        <div class="product-info">
+          <h1 id="productName"></h1>
+
+          <!-- PRICE -->
+          <div class="price-row">
+            <span class="price" id="productPrice"></span>
+            <span class="old-price" id="oldPrice"></span>
+            <span class="discount" id="discount"></span>
+          </div>
+
+          <!-- Ratings -->
+          <div id="productRating" class="rating"></div>
+
+          <!-- STOCK + SKU -->
+          <div class="meta-row">
+            <span id="productStock"></span>
+            <span id="productSKU"></span>
+          </div>
+
+          <!-- DESCRIPTION -->
+          <p id="productDesc"></p>
+
+          <!-- FEATURES -->
+          <ul class="features">
+            <li><i class="fa fa-truck"></i> Free Delivery</li>
+            <li><i class="fa fa-money-bill"></i> Cash on Delivery</li>
+            <li><i class="fa fa-check"></i> 7 Days Replacement</li>
+          </ul>
+
+          <!-- Reviews -->
+          <div id="productReviews"></div>
+        </div>
+        <div id="toast" class="toast"></div>
+      </section>
+
+      <!-- RELATED PRODUCTS -->
+      <section class="related-section">
+        <h2>You may also like</h2>
+        <div class="related-grid" id="relatedProducts"></div>
+      </section>
+    </main>
+
+    <!-- footer  -->
+    <div id="footer"></div>
+
+    <!-- STICKY ACTION BAR -->
+    <div class="product-action-bar">
+      <button class="btn-cart" id="btnCart">Add to Cart</button>
+      <a id="whatsappBtn" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+      </a>
+    </div>
+
+    <!-- LINK TO EXTERNAL JS -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/product.js"></script>
+  </body>
+</html>
