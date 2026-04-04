@@ -66,9 +66,10 @@ function loadCart() {
 
     const div = document.createElement("div");
     div.className = "cart-item";
-
+  //  <img src="${item.images?.[0] || '../assets/images/no-image.png'}" class="cart-img"></img>
     div.innerHTML = `
-      <img src="${item.images?.[0] || '../assets/images/no-image.png'}" class="cart-img">
+      
+      <img src="${item.images?.[0] || 'https://via.placeholder.com/150'}" class="cart-img">
 
       <div class="cart-info">
         <h3>${item.name}</h3>
