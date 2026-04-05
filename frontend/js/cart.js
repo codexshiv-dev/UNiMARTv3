@@ -83,18 +83,45 @@ function loadCart() {
   // 3. Render Items
   cart.forEach(item => {
     subtotal += item.price * item.qty;
+
+    // --- Generate Star Ratings ---
+    let stars = "";
+    if (item.ratings) {
+      const fullStars = Math.floor(item.ratings);
+      const halfStar = item.ratings % 1 >= 0.5 ? 1 : 0;
+      const emptyStars = 5 - fullStars - halfStar;
+      stars = `
+        <div class="rating">
+          ${'★'.repeat(fullStars)}${halfStar ? '½' : ''}${'☆'.repeat(emptyStars)}
+          <span style="color: #878787; font-size: 0.8rem;">(${item.ratings})</span>
+        </div>`;
+    }
     
     const div = document.createElement("div");
     div.className = "cart-item";
+
+    // Detailed Structure using Product Page Classes
     div.innerHTML = `
     <img src="${item.images?.[0] || '/assets/images/no-image.png'}" 
        class="cart-img" 
        onerror="this.src='/assets/images/no-image.png'">
+
       <div class="cart-info">
-        <h3>${item.name}</h3>
-        <p class="price">${formatINR(item.price)}</p>
-        <button class="remove-btn">Remove</button>
+        <h3 class="product-title">${item.name}</h3>
+        
+        ${stars}
+
+        <div class="price-row" style="margin-top: 8px;">
+          <span class="price">${formatINR(item.price)}</span>
+          ${item.oldPrice ? `<span class="old-price" style="text-decoration: line-through; color: #878787; margin-left: 8px;">${formatINR(item.oldPrice)}</span>` : ''}
+          ${item.discount ? `<span class="discount" style="color: #388e3c; font-weight: 600; margin-left: 8px;">${item.discount}% OFF</span>` : ''}
+        </div>
+
+        <button class="remove-btn" style="margin-top: 15px; font-weight: bold; color: #212121; text-transform: uppercase;">
+           Remove
+        </button>
       </div>
+
       <div class="qty-control">
         <button class="decrease">-</button>
         <input type="number" class="qty-input" value="${item.qty}" min="1">
@@ -126,11 +153,29 @@ function loadCart() {
   let delivery = subtotal > 500 ? 0 : 40;
   let grandTotal = subtotal + delivery;
 
+  // totalPriceEl.innerHTML = `
+  //   <div style="font-size: 0.9rem; color: #666; text-align: right;">Subtotal: ${formatINR(subtotal)}</div>
+  //   <div style="font-size: 0.9rem; color: #666; text-align: right;">Delivery: ${delivery === 0 ? '<span style="color:green">FREE</span>' : formatINR(delivery)}</div>
+  //   <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+  //   <div style="font-size: 1.4rem; font-weight:bold; text-align: right;">Total: ${formatINR(grandTotal)}</div>
+  // `;
   totalPriceEl.innerHTML = `
-    <div style="font-size: 0.9rem; color: #666; text-align: right;">Subtotal: ${formatINR(subtotal)}</div>
-    <div style="font-size: 0.9rem; color: #666; text-align: right;">Delivery: ${delivery === 0 ? '<span style="color:green">FREE</span>' : formatINR(delivery)}</div>
-    <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-    <div style="font-size: 1.4rem; font-weight:bold; text-align: right;">Total: ${formatINR(grandTotal)}</div>
+    <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span>Price (${cart.length} items)</span>
+        <span>${formatINR(subtotal)}</span>
+    </div>
+    <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span>Delivery Charges</span>
+        <span>${delivery === 0 ? '<span style="color:#388e3c">FREE</span>' : formatINR(delivery)}</span>
+    </div>
+    <hr style="border:0; border-top:1px dashed #e0e0e0; margin:15px 0;">
+    <div style="font-size: 1.2rem; font-weight:bold; display: flex; justify-content: space-between; color: #212121;">
+        <span>Total Amount</span>
+        <span>${formatINR(grandTotal)}</span>
+    </div>
+    <div style="color: #388e3c; font-weight: 600; font-size: 0.9rem; margin-top: 10px; text-align: left;">
+        You will save ${formatINR(delivery === 0 ? 40 : 0)} on this order
+    </div>
   `;
 }
 
