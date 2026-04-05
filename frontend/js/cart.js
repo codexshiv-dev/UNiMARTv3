@@ -102,12 +102,23 @@ function loadCart() {
       </div>
     `;
 
-    // Modern Event Listeners (No duplicate inline attributes)
-    div.querySelector(".increase").onclick = () => changeQty(item._id, 1);
-    div.querySelector(".decrease").onclick = () => changeQty(item._id, -1);
-    div.querySelector(".remove-btn").onclick = () => removeItem(item._id);
-    div.querySelector(".qty-input").onchange = (e) => updateQtyInput(item._id, e.target.value);
+   // --- MODERN APPROACH: addEventListener ---
+    div.querySelector(".increase").addEventListener("click", () => {
+      changeQty(item._id, 1);
+    });
 
+    div.querySelector(".decrease").addEventListener("click", () => {
+      changeQty(item._id, -1);
+    });
+
+    div.querySelector(".remove-btn").addEventListener("click", () => {
+      removeItem(item._id);
+    });
+
+    div.querySelector(".qty-input").addEventListener("change", (e) => {
+      updateQtyInput(item._id, e.target.value);
+    });
+    
     cartContainer.appendChild(div);
   });
 

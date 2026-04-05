@@ -74,21 +74,92 @@ body {
 }
 
 /* for card list products items */
+
 .cart-info h3 {
   margin: 0 0 5px 0; /* Added missing semicolon */
   font-size: 1.1rem;
 }
+.cart-info .price {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+
+/*. Stylish Quantity Controls Container */
+.qty-control {
+  background: #f1f3f5;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+  gap: 2px;
+}
+
+/*. Modern Square Buttons */
+.qty-control button {
+  background: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: background 0.2s;
+}
+
+.qty-control button:hover {
+  background: #fdfdfd;
+  color: var(--primary-color);
+  transform: scale(0.92);
+  background: #f0f0f0;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+/* Ensure the buttons don't show a blue box on mobile tap */
+.qty-control button {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Styling the specific +/- buttons */
+.decrease, .increase {
+  background: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.decrease:hover, .increase:hover {
+  background: #eee;
+  transform: translateY(-1px);
+}
+
+.decrease:active, .increase:active {
+  transform: scale(0.95);
+}
 
 /* Make the number input invisible so it looks like plain text */
 .qty-input {
-  width: 35px;
+  width: 40px;
   text-align: center;
   border: none;
-  background: transparent;
-  font-weight: bold;
+  background: transparent; /* Blends with the gray .qty-control */
+  font-weight: 700;
   font-size: 1rem;
+  color: var(--text-dark);
   outline: none;
-  appearance: textfield; /* Removes arrows in some browsers */
+  padding: 0;
+  margin: 0;
 }
 
 /* Removes arrows in Chrome/Safari */
@@ -98,11 +169,34 @@ body {
   margin: 0; 
 }
 
-.remove-btn:hover {
-  text-decoration: underline;
-  color: #ff5252; /* Slightly darker red on hover */
+/*  Minimalist Remove Button */
+.remove-btn {
+  background: transparent;
+  color: #ff7675;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 0.85rem;
+  transition: color 0.2s;
 }
 
+.remove-btn:hover {
+  color: #ff5252;
+  text-decoration: underline;
+}
+/* Summary and Flicker Prevention */
+.cart-summary h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+#shippingForm, 
+.cart-summary,
+#paymentMethod {
+  display: none; /* Managed by loadCart() in JS */
+}
 
 /* Modern Item Card */
 .cart-item {
