@@ -60,7 +60,7 @@ function loadCart() {
   if (cart.length === 0) {
     cartContainer.innerHTML = `
       <div class="empty-cart-msg">
-        <span class="icon" style="font-size: 3rem; display: block; margin-bottom: 10px;">🛒</span>
+        <span class="icon">🛒</span>
         <h3>Your cart is empty!</h3>
         <p>Looks like you haven't added anything yet.</p>
         <a href="../index.html" class="shop-now-btn">Start Shopping</a>
@@ -87,7 +87,9 @@ function loadCart() {
     const div = document.createElement("div");
     div.className = "cart-item";
     div.innerHTML = `
-      <img src="${item.images?.[0] || 'placeholder.png'}" class="cart-img" onerror="this.src='https://via.placeholder.com/150'">
+    <img src="${item.images?.[0] || '/assets/images/no-image.png'}" 
+       class="cart-img" 
+       onerror="this.src='/assets/images/no-image.png'">
       <div class="cart-info">
         <h3>${item.name}</h3>
         <p class="price">${formatINR(item.price)}</p>

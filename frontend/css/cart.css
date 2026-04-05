@@ -4,6 +4,12 @@
   --text-light: #636e72;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
 
 body {
   background-color: #f0f2f5;
@@ -17,6 +23,86 @@ body {
   padding: 20px;
   padding-bottom: 120px; /* Space for mobile sticky bar */
 }
+.cart-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+
+}
+.cart-container.cart-icon{
+  font-size: 30px;
+}
+/* Empty Cart State Styling */
+.empty-cart-msg {
+  text-align: center;
+  padding: 20px 10px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.empty-cart-msg .icon {
+  /* font-size: 60px; */
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.empty-cart-msg h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+}
+
+.empty-cart-msg p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+.shop-now-btn {
+  background: var(--text-dark);
+  color: white;
+  padding: 11px 17px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+ 
+}
+
+/* for card list products items */
+.cart-info h3 {
+  margin: 0 0 5px 0; /* Added missing semicolon */
+  font-size: 1.1rem;
+}
+
+/* Make the number input invisible so it looks like plain text */
+.qty-input {
+  width: 35px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+  appearance: textfield; /* Removes arrows in some browsers */
+}
+
+/* Removes arrows in Chrome/Safari */
+.qty-input::-webkit-inner-spin-button, 
+.qty-input::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.remove-btn:hover {
+  text-decoration: underline;
+  color: #ff5252; /* Slightly darker red on hover */
+}
+
 
 /* Modern Item Card */
 .cart-item {

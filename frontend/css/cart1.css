@@ -1,53 +1,5 @@
 
-.cart-container h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
-/* Empty Cart State Styling */
-.empty-cart-msg {
-  text-align: center;
-  padding: 60px 20px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-}
-
-.empty-cart-msg .icon {
-  font-size: 80px;
-  display: block;
-  margin-bottom: 20px;
-  opacity: 0.5;
-}
-
-.empty-cart-msg p {
-  font-size: 1.2rem;
-  color: var(--text-light);
-  margin-bottom: 25px;
-}
-
-.shop-now-btn {
-  background: var(--text-dark);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-
-
-
-
-.cart-info h3 {
-  margin: 0 0 5px 0
-  font-size: 1.1rem;
-}
 
 .cart-info .price {
   color: var(--text-light);
