@@ -88,17 +88,17 @@ function loadCart() {
     div.className = "cart-item";
     div.innerHTML = `
     <img src="${item.images?.[0] || '/assets/images/no-image.png'}" 
-       class="cart-item__img" 
+       class="cart-img" 
        onerror="this.src='/assets/images/no-image.png'">
-      <div class="cart-item__info">
-        <h3 class="cart-item__name">${item.name}</h3>
-        <p class="cart-item__price">${formatINR(item.price)}</p>
-        <button class="btn btn--remove">Remove</button>
+      <div class="cart-info">
+        <h3>${item.name}</h3>
+        <p class="price">${formatINR(item.price)}</p>
+        <button class="remove-btn">Remove</button>
       </div>
       <div class="qty-control">
-        <button class="qty-control__btn decrease">-</button>
-        <input type="number" class="qty-control__input" value="${item.qty}" min="1">
-        <button class="qty-control__btn increase">+</button>
+        <button class="decrease">-</button>
+        <input type="number" class="qty-input" value="${item.qty}" min="1">
+        <button class="increase">+</button>
       </div>
     `;
 
@@ -111,7 +111,7 @@ function loadCart() {
       changeQty(item._id, -1);
     });
 
-    div.querySelector(".btn--remove").addEventListener("click", () => {
+    div.querySelector(".remove-btn").addEventListener("click", () => {
       removeItem(item._id);
     });
 
