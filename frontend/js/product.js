@@ -143,13 +143,13 @@ if (window.location.pathname.includes("product.html")) {
 
         if (isInCart) {
           btnCart.textContent = "Go to Cart";
-          btnCart.onclick = () => { window.location.href = "cart.html"; };
+          btnCart.onclick = () => { window.location.href = "/pages/cart.html"; };
         } else {
           btnCart.onclick = () => {
             addToCart(product, quantity);
             btnCart.textContent = "Go to Cart";
             // After adding, change click behavior to go to cart
-            btnCart.onclick = () => { window.location.href = "cart.html"; };
+            btnCart.onclick = () => { window.location.href = "/pages/cart.html"; };
           };
         }
 
@@ -163,7 +163,7 @@ if (window.location.pathname.includes("product.html")) {
           // Add to cart first so checkout page can see it
           addToCart(product, 1);
           // Redirect to the new separate checkout page
-          window.location.href = "checkout.html";
+          window.location.href = "/pages/checkout.html";
         };
       }
       

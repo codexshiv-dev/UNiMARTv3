@@ -115,11 +115,14 @@ function handleCheckout() {
     if (overlay) overlay.style.display = "none";
     return;
   }
+
+
   let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   let delivery = subtotal > 500 ? 0 : 40;
   let total = subtotal + delivery;
 
- let message = `*✨ NEW ORDER RECEIVED ✨*\n`;
+  // ---  MESSAGE ---
+  let message = `*✨ NEW ORDER RECEIVED ✨*\n`;
   message += `--------------------------\n`;
   message += `👤 *Customer:* ${name}\n`;
   message += `📍 *Address:* ${address}\n`;
@@ -131,8 +134,7 @@ function handleCheckout() {
     message += `🆔 ID: _${item._id || 'N/A'}_\n`; // Helps seller identify unique product
     message += `🔢 Qty: ${item.qty} x ${formatINR(item.price)}\n`;
     
-    // --- PRO FEATURE: PRODUCT LINK ---
-    // Replace 'yourdomain.com' with your actual live website URL
+    // Updated link to your live vercel app
     const productLink = `https://unimart-ecommerce.vercel.app/product.html?id=${item._id}`;
     message += `🔗 View: ${productLink}\n`;
     message += `--------------------------\n`;
@@ -154,9 +156,8 @@ function handleCheckout() {
     
     //Clear the cart after redirecting
     localStorage.removeItem("cart");
-    if (typeof updateCartCount === "function") updateCartCount();
     // location.reload(); 
-
+    if (window.updateCartCount) window.updateCartCount();
      window.location.href = url;
     if (overlay) overlay.style.display = "none";
   }, 2000);
