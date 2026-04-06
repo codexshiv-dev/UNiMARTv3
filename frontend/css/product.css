@@ -1,273 +1,211 @@
 /* ==============================
-   CSS VARIABLES (THEME)
+   1. VARIABLES (Keep these for consistency)
 ================================ */
 :root {
-  --primary: #f59e0b;
-  --primary-hover: #d97706;
-  --bg-main: #f1f3f6;
-  --bg-card: #ffffff;
-  --bg-light: #f9fafb;
-  --text-dark: #212121;
-  --text-muted: #878787;
-  --text-light: #ffffff;
-  --accent: #f59e0b;
-  --price-color: #212121;
-  --discount-green: #1a7f37;
-  --error-red: #d93025;
-  --border-color: #dddddd;
-  --radius-sm: 8px;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --primary: #f59e0b;
+    --primary-hover: #d97706;
+    --bg-card: #ffffff;
+    --radius-sm: 8px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --text-dark: #212121;
+    --text-muted: #878787;
+    --accent: #f59e0b;
+    --white: #ffffff;
+    --text-light: #ffffff;
 }
 
 /* ==============================
-   PRODUCT GRID
+   2. PRODUCT GRID (Original)
 ================================ */
 .product-grid {
-  padding: 15px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-  width: 100%;
-  align-content: start;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    width: 100%;
+    align-content: start;
 }
 
 /* ==============================
-   Pagination
-================================ */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 30px 0 10px;
-}
-
-.pagination button {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  background: var(--white);
-  cursor: pointer;
-}
-
-.pagination button.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: var(--text-light);
-}
-
-/* ==============================
-   PRODUCT CARD
+   3. PRODUCT CARD (Original)
 ================================ */
 .product-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: 0.2s ease;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s ease;
 }
 
 .product-card:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
 .product-img {
-  position: relative;
-  background: var(--bg-light);
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    position: relative;
+    background: #f9fafb;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .product-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.wishlist {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 32px;
-  height: 32px;
-  background: var(--white);
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  color: #444;
-  font-size: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Original Content Spacing */
+.product-info {
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.product-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.product-card .price-row {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 4px;
 }
 
 /* ==============================
-   PRODUCT DETAIL (THE CORE LAYOUT)
+   4. PRODUCT DETAIL (FIXED LEFT THUMBS)
 ================================ */
 .product-page {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
 .product-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 10px;
-  background: var(--white);
-  padding: 10px;
-  border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px; /* Increased gap for better look */
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
 }
 
+/* Ensures thumbnails stay on the left of main image */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 15px;
+    display: grid;
+    grid-template-columns: 75px 1fr; /* Fixed left side for thumbs */
+    gap: 15px;
 }
 
 .thumbs {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .thumbs img {
-  width: 60px;
-  height: 60px;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  object-fit: contain;
+    width: 65px;
+    height: 65px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
-.thumbs img.active,
-.thumbs img:hover {
-  border: 2px solid var(--primary);
+.thumbs img.active {
+    border: 2px solid #ff9900;
 }
 
 .main-image {
-  position: relative;
-  background: #f7f7f7;
-  border-radius: 12px;
-  padding: 15px;
-  overflow: hidden;
+    position: relative;
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 15px;
+    overflow: hidden;
+    height: 450px; /* Fixed height for premium look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-image img {
-  width: 100%;
-  max-height: 400px; /* Improved height slightly for desktop */
-  object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
-
-/* ZOOM */
-.zoom-image {
-  position: absolute;
-  inset: 0;
-  background-repeat: no-repeat;
-  background-size: 130%;
-  display: none;
-  z-index: 5;
-  transition: background-position 0.1s ease;
-}
-
-/* INFO SECTION */
-.product-info h1 {
-  font-size: 24px;
-  color: var(--text-dark);
-}
-
-.product-info .price {
-  font-size: 22px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.product-info .old-price {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
-
-.product-info .discount {
-  color: var(--discount-green);
-  font-weight: bold;
-}
-
-/* STOCK & META */
-#productStock.in-stock { color: var(--discount-green); }
-#productStock.out-stock { color: var(--error-red); }
 
 /* ==============================
-   ACTION BAR
+   5. ACTION BAR & BUTTONS (Original)
 ================================ */
 .product-action-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  gap: 12px;
-  padding: 12px;
-  background: var(--white);
-  justify-content: center;
-  padding-bottom: 25px; /* Better for mobile home bars */
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  z-index: 100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: #fff;
+    justify-content: center;
+    padding-bottom: 25px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
 }
 
 .btn-cart, .btn-whatsapp {
-  padding: 12px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  min-width: 180px;
-  text-align: center;
-  border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 180px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
 }
 
 .btn-cart {
-  background: linear-gradient(135deg,#444,#111);
-  color: var(--text-light);
+    background: linear-gradient(135deg,#444,#111);
+    color: var(--white);
 }
 
 .btn-whatsapp {
-  background: var(--primary);
-  color: var(--text-light);
+    background: var(--primary);
+    color: var(--text-light);
 }
 
 /* ==============================
-   RESPONSIVE (STRICT FIX)
+   6. RESPONSIVE FIX
 ================================ */
 @media (max-width: 768px) {
-  .product-layout {
-    grid-template-columns: 1fr;
-  }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  .gallery-grid {
-    grid-template-columns: 60px 1fr; /* Keeps Thumbs on Left like you asked */
-  }
+    .product-layout {
+        grid-template-columns: 1fr;
+    }
 
-  .thumbs {
-    flex-direction: column; /* Ensures vertical thumbnails even on small screens */
-  }
+    /* Keeps thumbs on left even on mobile for consistency */
+    .gallery-grid {
+        grid-template-columns: 60px 1fr;
+    }
 
-  .main-image {
-    height: auto;
-    min-height: 250px;
-  }
+    .main-image {
+        height: 300px;
+    }
 
-  .product-action-bar {
-    justify-content: space-between;
-  }
-
-  .btn-cart, .btn-whatsapp {
-    flex: 1;
-    min-width: unset;
-  }
+    .btn-cart, .btn-whatsapp {
+        flex: 1;
+        min-width: unset;
+    }
 }
