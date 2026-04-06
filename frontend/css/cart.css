@@ -262,9 +262,9 @@ body {
   justify-content: center;
 }
 
-/* Right side: Place Order Button */
+
 .btn-checkout {
-  background-color: #fb641b; /* Flipkart Orange */
+  background-color: #F59E0B; /* Flipkart Orange */
   color: #fff;
   border: none;
   padding: 12px 30px;
@@ -274,6 +274,11 @@ body {
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   text-transform: uppercase;
+}
+
+.btn-checkout:hover {
+  background-color: #D97706; /* Darker shade on hover */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* Adjust main container so content doesn't get hidden behind the bar */
