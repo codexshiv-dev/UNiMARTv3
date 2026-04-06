@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Unimart</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/checkout.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <main class="checkout-container">
+      <div class="checkout-left">
+        <section class="checkout-card" id="shippingForm">
+          <h3><i class="fa-solid fa-truck"></i> Shipping Details</h3>
+          <div class="form-group">
+            <input
+              type="text"
+              id="userName"
+              placeholder="Your Full Name"
+              required />
+            <textarea
+              id="userAddress"
+              placeholder="Full Delivery Address (House No, Street, City, Pincode)"
+              rows="3"
+              required></textarea>
+          </div>
+        </section>
+
+        <section class="checkout-card" id="paymentMethodArea">
+          <h3><i class="fa-solid fa-credit-card"></i> Payment Method</h3>
+          <div class="payment-options">
+            <label class="payment-card-option">
+              <input type="radio" name="payment" value="whatsapp" checked />
+              <div class="pay-info">
+                <strong>WhatsApp Order</strong>
+                <p>Confirm & Pay manually on WhatsApp</p>
+              </div>
+              <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+            </label>
+
+            <label class="payment-card-option disabled">
+              <input type="radio" name="payment" value="esewa" disabled />
+              <div class="pay-info">
+                <strong>eSewa Wallet</strong>
+                <p>Coming Soon (Service Unavailable)</p>
+              </div>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="checkout-right">
+        <div class="checkout-card sticky-summary">
+          <h3>Price Details</h3>
+          <div id="priceSummary" class="price-details-box"></div>
+          <button class="btn-continue" onclick="handleCheckout()">
+            PLACE ORDER VIA WHATSAPP
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div id="orderOverlay" class="order-overlay" style="display: none">
+      <div class="overlay-content">
+        <div class="loader"></div>
+        <p>Processing your order...</p>
+      </div>
+    </div>
+
+    <script src="../js/cart.js"></script>
+    <script src="../js/checkout.js"></script>
+  </body>
+</html>

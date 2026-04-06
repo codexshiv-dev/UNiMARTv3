@@ -37,13 +37,11 @@ if (window.location.pathname.includes("product.html")) {
       // IMAGE + THUMB
       const mainImg = document.getElementById("productImg");
       const thumbs = document.getElementById("thumbs");
-
       const images = product.images?.length
         ? product.images
         : ["./images/no-image.png"];
 
       mainImg.src = images[0];
-
       thumbs.innerHTML = "";
 
       images.forEach((src, index) => {
@@ -69,13 +67,11 @@ if (window.location.pathname.includes("product.html")) {
      
       // RIBBON (PRODUCT PAGE)
       let ribbon = "";
-      
       if (product.isNew) ribbon += `<span class="ribbon new">NEW</span>`;
       if (product.isFeatured) ribbon += `<span class="ribbon featured">FEATURED</span>`;
       if (product.isBestSeller) ribbon += `<span class="ribbon best-seller">BESTSELLER</span>`;
       
       const mainImageBox = document.querySelector(".main-image");
-
       if (mainImageBox && ribbon) {
         mainImageBox.insertAdjacentHTML(
           "beforeend",
@@ -129,35 +125,47 @@ if (window.location.pathname.includes("product.html")) {
         tagsList.appendChild(li);
       });
 
-      
-      // CART BUTTON
+
+       // ==========================================
+      // UPGRADED ACTION BUTTONS (Cart & Buy)
+      // ==========================================      
       const btnCart = document.querySelector(".btn-cart");
+      const whatsappBtn = document.getElementById("whatsappBtn");
 
       if (product.stock === 0) {
         btnCart.disabled = true;
         btnCart.textContent = "Out of Stock";
+        whatsappBtn.style.display = "none";
       } else {
-        btnCart.disabled = false;
+        // Check if product is already in the cart
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const isInCart = cart.some(item => item._id === product._id);
 
-        btnCart.onclick = () => {
-          btnCart.textContent = "Adding...";
-
-          addToCart(product, quantity);
-          setTimeout(() => {
-            btnCart.textContent = "Add to Cart";
-  
-          }, 800);
-        };
-      }
+        if (isInCart) {
+          btnCart.textContent = "Go to Cart";
+          btnCart.onclick = () => { window.location.href = "cart.html"; };
+        } else {
+          btnCart.onclick = () => {
+            addToCart(product, quantity);
+            btnCart.textContent = "Go to Cart";
+            // After adding, change click behavior to go to cart
+            btnCart.onclick = () => { window.location.href = "cart.html"; };
+          };
+        }
 
       // =====================
       // WHATSAPP
       // =====================
-      document.getElementById("whatsappBtn").href =
-        `https://wa.me/919170570583?text=${encodeURIComponent(
-          `Hello 👋 I want to order ${product.name} - Rs.${product.price}`
-        )}`;
-
+      // WhatsApp / Order Button (Direct Buy)
+        whatsappBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Buy at ₹${product.price}`;
+        whatsappBtn.onclick = (e) => {
+          e.preventDefault();
+          // Add to cart first so checkout page can see it
+          addToCart(product, 1);
+          // Redirect to the new separate checkout page
+          window.location.href = "checkout.html";
+        };
+      }
       
       // SHARE
       document.getElementById("shareBtn").onclick = () => {
@@ -278,7 +286,6 @@ if (zoomContainer && window.innerWidth > 768) {
 
   zoomContainer.addEventListener("mousemove", (e) => {
     const rect = zoomContainer.getBoundingClientRect();
-
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
 
@@ -304,7 +311,6 @@ function showToast(msg) {
 }
 
 const backBtn = document.getElementById("back-shop");
-
 backBtn?.addEventListener("click", (e) => {
   e.preventDefault();
 

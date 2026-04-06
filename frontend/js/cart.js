@@ -47,11 +47,8 @@ function updateCartCount() {
 function loadCart() {
   const cartContainer = document.getElementById("cartItems");
   const totalPriceEl = document.getElementById("totalPrice");
-  const shippingForm = document.getElementById("shippingForm");
-  const paymentMethod = document.getElementById("paymentMethod"); // Future proof ID
-  const summaryDiv = document.querySelector(".cart-summary");
 
-  // New Sticky Bar Elements (Left side of the bottom bar)
+  // Sticky Bar Elements
   const totalOldPriceEl = document.getElementById("totalOldPrice");
   const totalFinalPriceEl = document.getElementById("totalFinalPrice");
   const actionBar = document.querySelector(".cart-action-bar");
@@ -71,19 +68,12 @@ function loadCart() {
         <a href="../index.html" class="shop-now-btn">Start Shopping</a>
       </div>
     `;
-    if(summaryDiv) summaryDiv.style.display = "none";
-    if(shippingForm) shippingForm.style.display = "none";
-    if (paymentMethod) paymentMethod.style.display = "none";
-
     // Hide the sticky bar if cart is empty
     if (actionBar) actionBar.style.display = "none";
     return;
   }
 
-  // 2. Show UI Elements
-  if(summaryDiv) summaryDiv.style.display = "flex";
-  if(shippingForm) shippingForm.style.display = "block";
-  if (paymentMethod) paymentMethod.style.display = "block";
+  //Show the Sticky Bar if items exist
   if (actionBar) actionBar.style.display = "flex";
 
 
@@ -112,15 +102,13 @@ function loadCart() {
     
     const div = document.createElement("div");
     div.className = "cart-item";
-
     // Detailed Structure using Product Page Classes
     div.innerHTML = `
-    <img src="${item.images?.[0] || '/assets/images/no-image.png'}" 
-       class="cart-img" 
-       onerror="this.src='/assets/images/no-image.png'">
+       <img src="${item.images?.[0] || '/assets/images/no-image.png'}" class="cart-img" 
+       onclick="window.location.href='product-details.html?id=${item._id}'" style="cursor:pointer"  onerror="this.src='/assets/images/no-image.png'">
 
       <div class="cart-info">
-        <h3 class="product-title">${item.name}</h3>
+        <h3 onclick="window.location.href='product-details.html?id=${item._id}'" style="cursor:pointer" class="product-title">${item.name}</h3>
         
         ${stars}
 
@@ -166,12 +154,7 @@ function loadCart() {
   let delivery = subtotal > 500 ? 0 : 40;
   let grandTotal = subtotal + delivery;
 
-  // totalPriceEl.innerHTML = `
-  //   <div style="font-size: 0.9rem; color: #666; text-align: right;">Subtotal: ${formatINR(subtotal)}</div>
-  //   <div style="font-size: 0.9rem; color: #666; text-align: right;">Delivery: ${delivery === 0 ? '<span style="color:green">FREE</span>' : formatINR(delivery)}</div>
-  //   <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-  //   <div style="font-size: 1.4rem; font-weight:bold; text-align: right;">Total: ${formatINR(grandTotal)}</div>
-  // `;
+
   if (totalPriceEl) {
   totalPriceEl.innerHTML = `
     <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
@@ -193,15 +176,23 @@ function loadCart() {
   `;
   }
 
-  // 5. UPDATE STICKY ACTION BAR (Flipkart style bottom bar)
-  if (totalOldPriceEl && totalFinalPriceEl) {
-    // Show total original price with strikethrough if there's a discount
-    totalOldPriceEl.innerHTML = originalTotal > subtotal 
-      ? `<del style="color:#878787; font-size:0.9rem;">${formatINR(originalTotal + delivery)}</del>` 
-      : "";
-    // Show the final price they need to pay
+// Update the Sticky Action Bar
+   if (totalOldPriceEl && totalFinalPriceEl) {
+    totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del style="color:#878787; font-size:0.9rem;">${formatINR(originalTotal + delivery)}</del>` : "";
     totalFinalPriceEl.textContent = formatINR(grandTotal);
   }
+
+  // 6. REDIRECT TO CHECKOUT PAGE
+  const placeOrderBtn = document.querySelector(".btn-checkout");
+  if (placeOrderBtn) {
+    placeOrderBtn.onclick = () => {
+      window.location.href = "checkout.html";
+    };
+  }
+
+
+
+ 
 
 }
 
@@ -241,90 +232,7 @@ function removeItem(id) {
   }
 }
 
-// =====================
-// CHECKOUT
-// =====================
-function handleCheckout() {
-  const nameInput = document.getElementById("userName");
-  const addressInput = document.getElementById("userAddress");
-  const shippingForm = document.getElementById("shippingForm");
- 
-  // Validation for Inputs
-  const name = nameInput ? nameInput.value.trim() : "";
-  const address = addressInput ? addressInput.value.trim() : "";
 
-  if (!name || !address) {
-    alert("Please enter your name and address for delivery! 🚚");
-    //MODERN REDIRECT: Smooth scroll to the form
-    if (shippingForm) {
-      shippingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      // 3. Highlight the fields to guide the user
-      nameInput.style.border = "2px solid #fb641b";
-      addressInput.style.border = "2px solid #fb641b";
-      
-      // Focus on the first empty field
-      if (!name) nameInput.focus();
-      else addressInput.focus();
-    }
-    return;
-  }
-  
-
-  // Payment Method Selection
- const paymentEl = document.querySelector('input[name="payment"]:checked');
- const selectedPayment = paymentEl ? paymentEl.value : "whatsapp";
-
-  if (selectedPayment === "esewa") {
-    alert("eSewa payment is being integrated! Please use WhatsApp for now. 🙏");
-    return;
-  }
-
-  // --- NEW: SHOW THANK YOU OVERLAY ---
-  const overlay = document.getElementById("orderOverlay");
-  if (overlay) overlay.style.display = "flex";
-
-  // WHATSAPP ORDER LOGIC
-  const cart = getCart();
-  let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  let delivery = subtotal > 500 ? 0 : 40;
-  let total = subtotal + delivery;
-
- let message = `*✨ NEW ORDER RECEIVED ✨*\n`;
-  message += `--------------------------\n`;
-  message += `👤 *Customer:* ${name}\n`;
-  message += `📍 *Address:* ${address}\n`;
-  message += `💳 *Payment:* WhatsApp (Manual)\n`;
-  message += `--------------------------\n\n`;
-  message += `*Items Ordered:* \n`;
-
-  cart.forEach(item => {
-    message += `▪️ ${item.name} (x${item.qty}) - ${formatINR(item.price * item.qty)}\n`;
-  });
-
-
-  message += `\n--------------------------\n`;
-  message += `💰 *Subtotal:* ${formatINR(subtotal)}\n`;
-  message += `🚚 *Delivery:* ${delivery === 0 ? 'FREE' : formatINR(delivery)}\n`;
-  message += `✅ *TOTAL AMOUNT:* ${formatINR(total)}\n`;
-  message += `--------------------------\n`;
-  message += `_Please confirm my order!_`;
-
-  const phone = "919170570583"; 
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  // Wait 2 seconds so the user sees the "Processing" screen, then redirect
-  setTimeout(() => {
-    window.open(url, "_blank");
-    
-    // Optional: Clear the cart after redirecting
-    // localStorage.removeItem("cart");
-    // location.reload(); 
-    
-    if (overlay) overlay.style.display = "none";
-  }, 2000);
-
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
