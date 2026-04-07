@@ -81,6 +81,35 @@
     flex-wrap: wrap;
     padding-top: 4px;
 }
+ .product-card .price {
+   font-weight: 700;
+   font-size: 19px;
+   color: var(--text-dark);
+}
+
+ .product-card .old-price {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+ .product-card .discount {
+  color:var(--text-discount);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+  .product-card.short-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.product-card h3,
+.short-desc {
+  /* display: -webkit-box; */
+  /* -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
+}
 
 /* Wishlist Button on Card */
 .wishlist {
@@ -177,6 +206,7 @@
 .main-image img {
     width: 100%;
     max-height: 100%;
+    /* max-height: 300px; */
     object-fit: contain;
     display: block;
     transition: transform 0.2s ease;
@@ -295,6 +325,12 @@
     background: linear-gradient(135deg,#444,#111);
     color: var(--white);
 }
+.btn-cart:hover{
+  background: linear-gradient(135deg,#3b3a3a,#474747);
+}
+.btn-cart:active{
+  background: linear-gradient(135deg,#504e4e,#474747);
+}
 
 .btn-whatsapp {
     background: var(--primary);
@@ -320,7 +356,19 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+    /* border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #222; */
+  
 }
+
+/* .share-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+} */
+
 
 .close-btn {
     left: 10px;
@@ -328,7 +376,20 @@
     color: white;
     border-radius: 50%;
     padding: 6px 12px;
+    cursor: pointer;
+    border: none;
 }
+/* .close-btn:hover {
+  background: var(--primary);
+  transform: scale(1.1);
+} */
+
+/* .main-image .close-btn,
+.main-image .share-btn {
+  opacity: 0;
+  transition: 0.3s;
+} */
+
 
 .main-image:hover .share-btn, 
 .main-image:hover .close-btn {
@@ -354,6 +415,13 @@
     .main-image {
         height: 350px;
     }
+    /* .product-img {
+    height: 160px;
+    }
+   .thumbs{
+    flex-direction:column;
+    justify-content:center;
+    } */
 
     .product-action-bar {
         justify-content: space-between;
