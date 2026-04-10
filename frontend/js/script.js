@@ -130,12 +130,16 @@ document.addEventListener("DOMContentLoaded", () => {
       card.dataset.category = product.category;
       card.dataset.desc = product.description;
       
-      
-           
-       if (product.stock === 0) {
-         card.style.opacity = "0.6";
-         card.style.pointerEvents = "none"; // ❌ disable click
-       }
+      // Inside productsToRender.forEach(product => { ...
+         const isOutOfStock = product.stockQuantity === 0 || product.stock === 0;
+         
+         if (isOutOfStock) {
+             card.classList.add("out-of-stock"); // Use a CSS class instead of inline styles
+             card.style.opacity = "0.5";
+             card.style.pointerEvents = "none";
+         }
+        let stockBadge = isOutOfStock ? `<span class="badge out-of-stock">Out of Stock</span>` : "";
+       
       // Ribbon badges
       let ribbon = "";
       if (product.isNew) ribbon += `<span class="ribbon new">NEW</span>`;
@@ -160,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
        
         <div class="product-img">
          ${ribbon}
+         ${stockBadge}
           <img src="${product.images?.[0] || '../assets/images/no-image.png'}" alt="${product.name}" loading="lazy">
           <span class="wishlist" aria-label="Add to wishlist"><i class="fa fa-heart"></i></span>
         </div>
