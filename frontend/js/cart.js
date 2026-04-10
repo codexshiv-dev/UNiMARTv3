@@ -65,7 +65,7 @@ function loadCart() {
         <span class="icon">🛒</span>
         <h3>Your cart is empty!</h3>
         <p>Looks like you haven't added anything yet.</p>
-        <a href="../index.html" class="shop-now-btn">Start Shopping</a>
+        <a href="/index.html" class="shop-now-btn">Start Shopping</a>
       </div>
     `;
     // Hide the sticky bar if cart is empty
@@ -83,10 +83,9 @@ function loadCart() {
   // 3. Render Items
   cart.forEach(item => {
     subtotal += item.price * item.qty;
-
-    // Calculate what the price would have been without the discount
+   // Calculate what the price would have been without the discount
     originalTotal += (item.oldPrice || item.price) * item.qty;
-
+    const productUrl = `./product.html?id=${item._id}`;
     // --- Generate Star Ratings ---
     let stars = "";
     if (item.ratings) {
@@ -104,30 +103,28 @@ function loadCart() {
     div.className = "cart-item";
     // Detailed Structure using Product Page Classes
     div.innerHTML = `
-       <img src="${item.images?.[0] || '/assets/images/no-image.png'}" class="cart-img" 
-       onclick="window.location.href='../pages/product.html?id=${item._id}'" style="cursor:pointer"  onerror="this.src='/assets/images/no-image.png'">
+      <div class="cart-item-main" onclick="window.location.href='${productUrl}'">
+                <img src="${item.images?.[0] || '/assets/images/no-image.png'}" class="cart-img" onerror="this.src='/assets/images/no-image.png'">
+                <div class="cart-info">
+                    <h3 class="product-title" onclick="window.location.href='${productUrl}'">${item.name}</h3>
+                    ${stars}
+                    <div class="price-row">
+                        <span class="price">${formatINR(item.price)}</span>
+                        ${item.oldPrice ? `<span class="old-price">${formatINR(item.oldPrice)}</span>` : ''}
+                        ${item.discount ? `<span class="discount-tag">${item.discount}% OFF</span>` : ''}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item-actions">
+                <div class="qty-control">
+                    <button class="decrease">−</button>
+                    <input type="number" class="qty-input" value="${item.qty}" readonly>
+                    <button class="increase">+</button>
+                </div>
+                <button class="remove-btn">REMOVE</button>
+            </div>
 
-      <div class="cart-info">
-        <h3 onclick="window.location.href='../pages/product.html?id=${item._id}'" style="cursor:pointer" class="product-title">${item.name}</h3>
-        
-        ${stars}
-
-        <div class="price-row" >
-          <span class="price">${formatINR(item.price)}</span>
-          ${item.oldPrice ? `<span class="old-price" style="text-decoration: line-through; color: #878787; margin-left: 8px;">${formatINR(item.oldPrice)}</span>` : ''}
-          ${item.discount ? `<span class="discount" style="color: #388e3c; font-weight: 600; margin-left: 8px;">${item.discount}% OFF</span>` : ''}
-        </div>
-
-        <button class="remove-btn" style="margin-top: 15px; text-transform: uppercase;">
-           Remove
-        </button>
-      </div>
-
-      <div class="qty-control">
-        <button class="decrease">-</button>
-        <input type="number" class="qty-input" value="${item.qty}" min="1">
-        <button class="increase">+</button>
-      </div>
     `;
 
    // --- MODERN APPROACH: addEventListener ---
@@ -156,31 +153,45 @@ function loadCart() {
 
 
   if (totalPriceEl) {
-  totalPriceEl.innerHTML = `
-    <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
-        <span>Price (${cart.length} items)</span>
-        <span>${formatINR(subtotal)}</span>
-    </div>
-    <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
-        <span>Delivery Charges</span>
-        <span>${delivery === 0 ? '<span style="color:#388e3c">FREE</span>' : formatINR(delivery)}</span>
-    </div>
-    <hr style="border:0; border-top:1px dashed #e0e0e0; margin:15px 0;">
-    <div style="font-size: 1.2rem; font-weight:bold; display: flex; justify-content: space-between; color: #212121;">
-        <span>Total Amount</span>
-        <span>${formatINR(grandTotal)}</span>
-    </div>
-    <div style="color: #388e3c; font-weight: 600; font-size: 0.9rem; margin-top: 10px; text-align: left;">
-        You will save ${formatINR(delivery === 0 ? 40 : 0)} on this order
-    </div>
-  `;
+  // totalPriceEl.innerHTML = `
+  //   <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
+  //       <span>Price (${cart.length} items)</span>
+  //       <span>${formatINR(subtotal)}</span>
+  //   </div>
+  //   <div style="font-size: 1rem; color: #212121; display: flex; justify-content: space-between; margin-bottom: 8px;">
+  //       <span>Delivery Charges</span>
+  //       <span>${delivery === 0 ? '<span style="color:#388e3c">FREE</span>' : formatINR(delivery)}</span>
+  //   </div>
+  //   <hr style="border:0; border-top:1px dashed #e0e0e0; margin:15px 0;">
+  //   <div style="font-size: 1.2rem; font-weight:bold; display: flex; justify-content: space-between; color: #212121;">
+  //       <span>Total Amount</span>
+  //       <span>${formatINR(grandTotal)}</span>
+  //   </div>
+  //   <div style="color: #388e3c; font-weight: 600; font-size: 0.9rem; margin-top: 10px; text-align: left;">
+  //       You will save ${formatINR(delivery === 0 ? 40 : 0)} on this order
+  //   </div>
+  // `;
+
+       totalPriceEl.innerHTML = `
+            <div class="summary-line"><span>Price (${cart.length} items)</span><span>${formatINR(subtotal)}</span></div>
+            <div class="summary-line"><span>Delivery Charges</span><span>${delivery === 0 ? '<span class="free">FREE</span>' : formatINR(delivery)}</span></div>
+            <hr>
+            <div class="summary-line total"><span>Total Amount</span><span>${formatINR(grandTotal)}</span></div>
+            <div class="savings-msg">You will save ${formatINR(originalTotal - subtotal + (delivery === 0 ? 40 : 0))} on this order</div>
+        `;
+
   }
 
 // Update the Sticky Action Bar
-   if (totalOldPriceEl && totalFinalPriceEl) {
-    totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del style="color:#878787; font-size:0.9rem;">${formatINR(originalTotal + delivery)}</del>` : "";
-    totalFinalPriceEl.textContent = formatINR(grandTotal);
-  }
+  //  if (totalOldPriceEl && totalFinalPriceEl) {
+  //   totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del style="color:#878787; font-size:0.9rem;">${formatINR(originalTotal + delivery)}</del>` : "";
+  //   totalFinalPriceEl.textContent = formatINR(grandTotal);
+  // }
+
+  if (totalOldPriceEl && totalFinalPriceEl) {
+        totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del>${formatINR(originalTotal + delivery)}</del>` : "";
+        totalFinalPriceEl.textContent = formatINR(grandTotal);
+    }
 
   // 6. REDIRECT TO CHECKOUT PAGE
   const placeOrderBtn = document.querySelector(".btn-checkout");
