@@ -183,11 +183,6 @@ function loadCart() {
   }
 
 // Update the Sticky Action Bar
-  //  if (totalOldPriceEl && totalFinalPriceEl) {
-  //   totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del style="color:#878787; font-size:0.9rem;">${formatINR(originalTotal + delivery)}</del>` : "";
-  //   totalFinalPriceEl.textContent = formatINR(grandTotal);
-  // }
-
   if (totalOldPriceEl && totalFinalPriceEl) {
         totalOldPriceEl.innerHTML = originalTotal > subtotal ? `<del>${formatINR(originalTotal + delivery)}</del>` : "";
         totalFinalPriceEl.textContent = formatINR(grandTotal);
