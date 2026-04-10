@@ -307,12 +307,12 @@ body {
 
 .grand-total {
     color: var(--text-main); /* Strong black for final price */
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
 }
 .old-price-row del {
     color: var(--text-muted);
-    font-size: 1.2rem;
+    font-size: 1.02rem;
     
 }
 
