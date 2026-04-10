@@ -76,13 +76,23 @@ function initHeaderEvents() {
   overlay.onclick = closeMenu;
 
   // FIX: Only close menu if a LINK (<a>) is clicked, not the whole container
+ // 1. Handle the Dropdown Toggle separately with stopPropagation
+  const dropdownToggle = mobileMenu.querySelector(".dropdown-toggle");
+  const dropdownMenu = mobileMenu.querySelector(".dropdown-menu");
+
+  dropdownToggle?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Prevents the click from reaching mobileMenu.onclick
+    dropdownMenu?.classList.toggle("show");
+  });
+
+  // 2. Updated mobileMenu.onclick logic
   mobileMenu.onclick = (e) => {
+    // Check if the click was on a link or a specific category button
     const isLink = e.target.tagName === 'A';
     const isCategoryBtn = e.target.classList.contains('mobile-category');
     
-    // Don't close if they clicked the dropdown toggle button itself
-    if (e.target.classList.contains('dropdown-toggle')) return;
-
+    // If it's a category or a link, close the sidebar
     if (isLink || isCategoryBtn) {
       closeMenu();
     }
