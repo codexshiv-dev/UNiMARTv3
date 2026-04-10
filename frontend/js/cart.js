@@ -105,20 +105,20 @@ function loadCart() {
     // Detailed Structure using Product Page Classes
     div.innerHTML = `
        <img src="${item.images?.[0] || '/assets/images/no-image.png'}" class="cart-img" 
-       onclick="window.location.href='product-details.html?id=${item._id}'" style="cursor:pointer"  onerror="this.src='/assets/images/no-image.png'">
+       onclick="window.location.href='../pages/product.html?id=${item._id}'" style="cursor:pointer"  onerror="this.src='/assets/images/no-image.png'">
 
       <div class="cart-info">
-        <h3 onclick="window.location.href='product-details.html?id=${item._id}'" style="cursor:pointer" class="product-title">${item.name}</h3>
+        <h3 onclick="window.location.href='../pages/product.html?id=${item._id}'" style="cursor:pointer" class="product-title">${item.name}</h3>
         
         ${stars}
 
-        <div class="price-row" style="margin-top: 8px;">
+        <div class="price-row" >
           <span class="price">${formatINR(item.price)}</span>
           ${item.oldPrice ? `<span class="old-price" style="text-decoration: line-through; color: #878787; margin-left: 8px;">${formatINR(item.oldPrice)}</span>` : ''}
           ${item.discount ? `<span class="discount" style="color: #388e3c; font-weight: 600; margin-left: 8px;">${item.discount}% OFF</span>` : ''}
         </div>
 
-        <button class="remove-btn" style="margin-top: 15px; font-weight: bold; color: #212121; text-transform: uppercase;">
+        <button class="remove-btn" >
            Remove
         </button>
       </div>
