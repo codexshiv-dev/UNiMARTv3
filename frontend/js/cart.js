@@ -85,7 +85,7 @@ function loadCart() {
     subtotal += item.price * item.qty;
    // Calculate what the price would have been without the discount
     originalTotal += (item.oldPrice || item.price) * item.qty;
-    const productUrl = `./product.html?id=${item._id}`;
+    const productUrl = `/product.html?id=${item._id}`;
     // --- Generate Star Ratings ---
     let stars = "";
     if (item.ratings) {
