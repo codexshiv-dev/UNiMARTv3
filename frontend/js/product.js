@@ -5,6 +5,7 @@ if (window.location.pathname.includes("product.html")) {
 
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
+  const zoomImage = document.getElementById("zoomImage");
 
    if (!productId) {
     alert("No product selected.");
@@ -68,6 +69,8 @@ if (window.location.pathname.includes("product.html")) {
         thumbs.appendChild(t);
       });
 
+      // 2. PLACE ZOOM LOGIC HERE (After images are loaded)
+        initSmoothZoom(mainImg, zoomImage);
      
       // RIBBON (PRODUCT PAGE)
       let ribbon = "";
@@ -269,6 +272,37 @@ if (window.location.pathname.includes("product.html")) {
   
 } 
 
+// ==========================================
+// THE SMOOTH ZOOM FUNCTION (Amazon Style)
+// ==========================================
+function initSmoothZoom(mainImg, zoomImage) {
+    const zoomContainer = document.getElementById("zoomContainer");
+
+    if (!zoomContainer || !zoomImage || window.innerWidth <= 768) return;
+
+    zoomContainer.addEventListener("mouseenter", () => {
+        zoomImage.style.display = "block";
+        zoomImage.style.backgroundImage = `url(${mainImg.src})`;
+        zoomImage.style.backgroundSize = "250%"; // Intensity of zoom
+    });
+
+    zoomContainer.addEventListener("mousemove", (e) => {
+        const rect = zoomContainer.getBoundingClientRect();
+        // Amazon Smoothness calculation
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        // Use backgroundPosition for the smooth slide effect
+        zoomImage.style.backgroundPosition = `${x}% ${y}%`;
+    });
+
+    zoomContainer.addEventListener("mouseleave", () => {
+        zoomImage.style.display = "none";
+    });
+}
+
+
+
 
 
 // CART COUNT UPDATE
@@ -281,31 +315,6 @@ function updateCartCount() {
   if (el) el.textContent = total;
 }
 
-// =====================
-// IMPROVED ZOOM LOGIC
-// =====================
-function applyZoom() {
-  const zoomContainer = document.getElementById("zoomContainer");
-  const zoomImage = document.getElementById("zoomImage");
-  const mainImg = document.getElementById("productImg");
-
-  // Only enable if desktop and elements exist
-  if (zoomContainer && zoomImage && window.innerWidth > 768) {
-    zoomContainer.onmouseenter = () => {
-      zoomImage.style.display = "block";
-      zoomImage.style.backgroundImage = `url(${mainImg.src})`;
-    };
-    // ... rest of your mousemove logic
-  } else {
-    if (zoomImage) zoomImage.style.display = "none";
-  }
-}
-
-// Run after images are rendered
-applyZoom();
-window.addEventListener('resize', applyZoom);
-
-// Call this AFTER the product data and images are loaded in your fetch
 //toast message
 function showToast(msg) {
   const toast = document.getElementById("toast");

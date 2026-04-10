@@ -140,26 +140,8 @@
 /* ==========================================================================
    3. PRODUCT DETAIL PAGE (Layout)
    ========================================================================== */
-/* Prevent layout collapse while JS is loading */
-.main-image {
-    min-height: 350px; /* Matches your image height in the screenshot */
-    background-color: #f9f9f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-/* Ensure the image doesn't start with 0px width/height */
-#productImg:not([src]), #productImg[src=""] {
-    opacity: 0;
-}
-
-#productImg {
-    transition: opacity 0.3s ease;
-    opacity: 1;
-}
-
-   .product-page {
+.product-page {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
@@ -216,35 +198,67 @@
     position: relative;
     background: var(--bg-light);
     border-radius: var(--radius-md);
-    padding: 15px;
-    overflow: hidden;
+    padding: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: zoom-in;
+    overflow: hidden;
+    cursor: crosshair;
     /* height: 500px; */
-    overflow: visible;
     border: 1px solid #f0f0f0;
+    min-height: 350px;
 }
 
 .main-image img {
     width: 100%;
     /* max-height: 100%; */
-    max-height: 300px;
+    max-height: 280px;
     object-fit: contain;
-    display: block;
-    transition: transform 0.2s ease;
+    /* display: block; */
+    /* transition: transform 0.2s ease; */
+    transition: opacity 0.3s ease;
 }
 
 /* Zoom Container */
 .zoom-image {
-    position: absolute;
-    inset: 0;
+   position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
-    background-size: 130%;
+    background-size: 250%;
     display: none;
-    z-index: 5;
-    transition: background-position 0.1s ease;
+    z-index: 10;
+    pointer-events: none; /* Allows you to click buttons underneath */
+    transition: background-position 0.15s ease-out; /* Smooth Amazon-like movement */
+}
+
+/* --- LOADING STATE FIX (Prevents Blank Page) --- */
+.main-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-main);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0,0,0,0.1);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* ==========================================================================
@@ -364,6 +378,30 @@
 }
 
 
+/* RELATED */
+.related-section {
+  margin-top: 30px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+.related-section h2{
+  margin-bottom:12px;
+  font-weight: 700;
+
+}
+
+.related-grid .product-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  
+}
+
+
 
 /* ==========================================================================
    5. BUTTONS & SHARE
@@ -450,28 +488,6 @@
     opacity: 1;
 }
 
-/* RELATED */
-.related-section {
-  margin-top: 30px;
-}
-
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
-}
-.related-section h2{
-  margin-bottom:12px;
-  font-weight: 700;
-
-}
-
-.related-grid .product-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  
-}
 
 /* ==========================================================================
    6. RESPONSIVE

@@ -133,9 +133,15 @@
       </aside>
 
       <section class="products-wrapper">
+        <div id="indexLoader" class="main-loading">
+          <div class="spinner"></div>
+          <span>Fetching Latest Gadgets...</span>
+        </div>
+
         <!-- PRODUCT GRID -->
-        <section class="product-grid" id="productGrid">
-          <!-- <article
+        <div id="indexContent" style="display: none">
+          <section class="product-grid" id="productGrid">
+            <!-- <article
             class="product-card"
             data-id="2"
             data-name="Panda Night Lamp for Kids"
@@ -180,15 +186,10 @@
               </div>
             </div>
           </article>-->
-          <!-- Dynamic JS will populate products here -->
-        </section>
-        <p id="noResult" style="display: none"></p>
-        <div class="pagination" id="pagination">
-          <!-- <button>Previous</button>
-          <button class="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>Next</button> -->
+            <!-- Dynamic JS will populate products here -->
+          </section>
+          <p id="noResult" style="display: none"></p>
+          <div class="pagination" id="pagination"></div>
         </div>
       </section>
     </main>

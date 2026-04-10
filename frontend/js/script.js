@@ -26,13 +26,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // FETCH PRODUCTS FROM BACKEND
   // =======================
   async function fetchProducts() {
+    const loader = document.getElementById("indexLoader");
+    const content = document.getElementById("indexContent");
+
     try {
+      // 1. Ensure loader is visible before starting fetch
+      if (loader) loader.style.display = "flex";
+      if (content) content.style.display = "none";
+
       const res = await fetch("https://unimart-ecommerce.onrender.com/api/products");
       products = await res.json();
       filteredProducts = [...products];
+      
+      // 2. Hide loader and show content before rendering
+      if (loader) loader.style.display = "none";
+      if (content) content.style.display = "block";
+
       renderPage(1);
     } catch (err) {
       console.error("Failed to load products:", err);
+      // Show error message inside the loader div if fetch fails
+      if (loader) {
+        loader.innerHTML = `<p style="color:red;">Error loading products. Please check your connection.</p>`;
+      }
     }
   }
 
@@ -58,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!productsToRender.length) {
       noResult.style.display = "block";
+      noResult.innerHTML = "No products found matching your search.";
       return;
     } else {
       noResult.style.display = "none";
