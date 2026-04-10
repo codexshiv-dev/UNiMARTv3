@@ -145,6 +145,7 @@
     margin: auto;
     padding: 20px;
     background: var(--bg-main);
+    padding-bottom: 150px;
 }
 
 .product-layout {
@@ -163,6 +164,9 @@
     gap: 10px;
     position: sticky;
     top: 10px;
+    height: fit-content; 
+    align-self: start;
+    margin-bottom: 20px;
 }
 
 .thumbs {
@@ -262,20 +266,7 @@
     margin: 10px 0;
     line-height: 1.5;
 }
-/* Position this inside .main-image or .product-img */
-.new-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #388e3c; /* Matches your --text-discount */
-    color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    z-index: 100; /* Ensures it stays above the image during scroll */
-    text-transform: uppercase;
-}
+
 
 /* Meta Data (Stock/SKU) */
 .meta-row {
@@ -295,15 +286,19 @@
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 20px;
   list-style: none;
   padding: 0;
+  position: relative; 
+  z-index: 1;
+  background: transparent;
 }
 #productTags li {
   background: #f1f1f1;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
+  color: var(--text-dark);
 }
 
 /* Features List */
