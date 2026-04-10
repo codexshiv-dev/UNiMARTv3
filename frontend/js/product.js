@@ -280,18 +280,15 @@ function updateCartCount() {
 // =====================
 // IMPROVED ZOOM LOGIC
 // =====================
-const zoomContainer = document.getElementById("zoomContainer");
-const zoomImage = document.getElementById("zoomImage");
-const mainImg = document.getElementById("productImg");
-
 function initZoom() {
-  // Check width every time we interact to ensure mobile/desktop switching works
-  if (zoomContainer && window.innerWidth > 768) {
-    
+  const zoomContainer = document.getElementById("zoomContainer");
+  const zoomImage = document.getElementById("zoomImage");
+  const mainImg = document.getElementById("productImg");
+
+  // Only run zoom if we are on a desktop-sized screen
+  if (zoomContainer && zoomImage && window.innerWidth > 768) {
     zoomContainer.onmouseenter = () => {
       zoomImage.style.display = "block";
-      zoomImage.style.backgroundSize = "200%"; // Increased for better zoom effect
-      // FORCE UPDATE: Ensure it always uses the current main image
       zoomImage.style.backgroundImage = `url(${mainImg.src})`;
     };
 
@@ -305,18 +302,10 @@ function initZoom() {
     zoomContainer.onmouseleave = () => {
       zoomImage.style.display = "none";
     };
-  } else {
-    // Disable zoom on mobile to prevent "sticky" touch issues
-    if (zoomImage) zoomImage.style.display = "none";
   }
 }
 
-// Initialize on load
-initZoom();
-
-// Re-check if user rotates phone or resizes window
-window.addEventListener('resize', initZoom);
-
+// Call this AFTER the product data and images are loaded in your fetch
 //toast message
 function showToast(msg) {
   const toast = document.getElementById("toast");
