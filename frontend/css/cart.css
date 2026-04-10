@@ -324,9 +324,9 @@ body {
 }
 
 /* Adjust main container so content doesn't get hidden behind the bar */
-/* .cart-container {
+.cart-container {
   padding-bottom: 100px; 
-} */
+}
 
 
 /* //botton */
@@ -343,14 +343,7 @@ body {
 
 /* Mobile Optimization */
 @media (max-width: 600px) {
-  /* .cart-item { 
-    grid-template-columns: 60px 1fr; 
-  }
-  
-  .qty-control { 
-    grid-column: span 2; 
-    justify-content: flex-end; 
-  } */
+ 
   .btn-checkout {
         padding: 12px 15px;
         font-size: 0.8rem;
