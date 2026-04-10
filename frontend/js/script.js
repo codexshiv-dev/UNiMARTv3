@@ -23,6 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileCategories = document.querySelectorAll(".mobile-category");
 
   // =======================
+  // HELPER: AUTO-CLOSE MOBILE MENU
+  // =======================
+  const closeMobileMenuUI = () => {
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
+    if (mobileMenu && mobileMenu.classList.contains("active")) {
+      mobileMenu.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+      document.body.style.top = "";
+    }
+  };
+
+  // =======================
   // FETCH PRODUCTS FROM BACKEND
   // =======================
   async function fetchProducts() {
@@ -51,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  
 
  // =======================
   // FILTER PRODUCTS (FIXED)
@@ -100,15 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "product-card";
       card.dataset.category = product.category;
       card.dataset.desc = product.description;
-
-
-
       
-       let stockBadge = "";
-
-      //  if (product.stock === 0) {
-      //    stockBadge = `<span class="out-badge">Out of Stock</span>`;
-      //  }
+      
            
        if (product.stock === 0) {
          card.style.opacity = "0.6";
@@ -164,33 +173,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================
-  // RENDER PAGINATION
+  // PAGINATION & NAVIGATION
   // =======================
   function renderPagination(productsToRender) {
     paginationDiv.innerHTML = "";
     const totalPages = Math.ceil(productsToRender.length / productsPerPage);
     if (totalPages <= 1) return;
 
-    const prevBtn = document.createElement("button");
-    prevBtn.textContent = "Previous";
-    prevBtn.disabled = currentPage === 1;
-    prevBtn.onclick = () => { if (currentPage > 1) renderPage(currentPage - 1); };
-    paginationDiv.appendChild(prevBtn);
+    const createBtn = (text, targetPage, active = false, disabled = false) => {
+        const btn = document.createElement("button");
+        btn.textContent = text;
+        if (active) btn.className = "active";
+        btn.disabled = disabled;
+        btn.onclick = () => renderPage(targetPage);
+        return btn;
+    };
+
+    paginationDiv.appendChild(createBtn("Previous", currentPage - 1, false, currentPage === 1));
 
     for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.className = i === currentPage ? "active" : "";
-      btn.onclick = () => renderPage(i);
-      paginationDiv.appendChild(btn);
+      paginationDiv.appendChild(createBtn(i, i, i === currentPage));
     }
 
-    const nextBtn = document.createElement("button");
-    nextBtn.textContent = "Next";
-    nextBtn.disabled = currentPage === totalPages;
-    nextBtn.onclick = () => { if (currentPage < totalPages) renderPage(currentPage + 1); };
-    paginationDiv.appendChild(nextBtn);
+    paginationDiv.appendChild(createBtn("Next", currentPage + 1, false, currentPage === totalPages));
   }
+
+  function renderPage(page) {
+    currentPage = page;
+    const filtered = getFilteredProducts();
+    const start = (currentPage - 1) * productsPerPage;
+    const end = start + productsPerPage;
+    renderProducts(filtered.slice(start, end));
+    renderPagination(filtered);
+  }
+
+  // Assign to global variable so Layout.js can call it
+  resetPageAndRender = () => { renderPage(1); };
+    
 
   // =======================
   // RENDER PAGE
@@ -243,15 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // load count on page load 
   // updateCartCount();
 
+ 
+  dropdownToggle?.addEventListener("click", () => dropdownMenu.classList.toggle("show"));
+
 });
 
-
-
-// window.addEventListener("load", () => {
-//   const scrollY = sessionStorage.getItem("scrollY");
-
-//   if (scrollY) {
-//     window.scrollTo(0, parseInt(scrollY));
-//     sessionStorage.removeItem("scrollY");
-//   }
-// });

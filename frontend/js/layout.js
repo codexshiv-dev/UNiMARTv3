@@ -10,11 +10,19 @@ async function loadHeader() {
     // 1. Setup Hamburger/Menu
     initHeaderEvents();
 
-    // 2. Setup Search Logic (Re-bind the event listeners)
-    if (typeof resetPageAndRender === "function") {
-        document.getElementById("searchInputDesktop")?.addEventListener("input", resetPageAndRender);
-        document.getElementById("searchInputMobile")?.addEventListener("input", resetPageAndRender);
-    }
+   // 2. Setup Search Logic
+    // We wrap it in a function check to ensure script.js is ready
+    const dInput = document.getElementById("searchInputDesktop");
+    const mInput = document.getElementById("searchInputMobile");
+
+    const triggerSearch = () => {
+      if (typeof resetPageAndRender === "function") {
+        resetPageAndRender();
+      }
+    };
+
+    dInput?.addEventListener("input", triggerSearch);
+    mInput?.addEventListener("input", triggerSearch);
 
     if (typeof updateCartCount === "function") updateCartCount();
 
