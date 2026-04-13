@@ -291,7 +291,6 @@
 
 .product-info .price-row {
     background: #fdfaf3; /* Subtle highlight for price section */
-    padding: 15px;
     border-radius: var(--radius-sm);
     display: flex;
     align-items: baseline;
