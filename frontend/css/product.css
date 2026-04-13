@@ -283,20 +283,26 @@
    4. PRODUCT DETAIL INFO (Text & Meta)
    ========================================================================== */
 .product-info h1 {
-    font-size: 24px;
-    margin-bottom: 8px;
-}
-
-.product-info .price-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+   font-size: 25px; /* Bigger title */
+    font-weight: 700;
+    color: #111;
+    line-height: 1.2;
     margin-bottom: 10px;
 }
 
+.product-info .price-row {
+   background: #fdfaf3; /* Subtle highlight for price section */
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 20px 0;
+}
+
 .product-info .price {
-    font-weight: 700;
-    font-size: 22px;
+    
+    font-size: 30px;
     color: var(--text-dark);
 }
 
