@@ -126,23 +126,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     productsToRender.forEach(product => {
       const card = document.createElement("article");
-
       card.className = "product-card";
       card.dataset.category = product.category;
       card.dataset.desc = product.description;
       
       // Inside productsToRender.forEach(product => { ...
-      const isOutOfStock = product.stockQuantity === 0 || product.stock === 0;
+         const isOutOfStock = product.stockQuantity === 0 || product.stock === 0;
          
          if (isOutOfStock) {
-             card.classList.add("is-out");
+             card.classList.add("out-of-stock"); // Use a CSS class instead of inline styles
              card.style.opacity = "0.5";
              card.style.pointerEvents = "none";
          }
         let stockBadge = isOutOfStock ? `<span class="out-badge ">OUT OF STOCK</span>` : "";
        
       // Ribbon badges
-      let ribbon = `<div class="ribbon-group">`;
+      let ribbon = "";
       if (product.isNew) ribbon += `<span class="ribbon new">NEW</span>`;
       if (product.isFeatured) ribbon += `<span class="ribbon featured">FEATURED</span>`;
       if (product.isBestSeller) ribbon += `<span class="ribbon best-seller">BESTSELLER</span>`;
@@ -179,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ${product.oldPrice ? `<span class="old-price">₹${product.oldPrice}</span>` : ''}
             ${product.discount ? `<span class="discount">${product.discount}% OFF</span>` : ''}
           </div>
-       
+          ${stars}
         </div>
       `;
 
