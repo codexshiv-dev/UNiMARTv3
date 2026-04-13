@@ -214,7 +214,7 @@ if (window.location.pathname.includes("product.html")) {
       container.innerHTML = "";
     
       if (!products.length) {
-        container.innerHTML = "<p>No related products found</p>";
+        container.innerHTML = "<p>No relatproducts found</p>";
         return;
       }
     
