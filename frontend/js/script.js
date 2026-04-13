@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
              card.style.opacity = "0.5";
              card.style.pointerEvents = "none";
          }
-        let stockBadge = isOutOfStock ? `<span class="out-badge ">OUT OF STOCK</span>` : "";
+        let stockBadge = isOutOfStock ? `<span class="out-badge">OUT OF STOCK</span>` : "";
        
       // Ribbon badges
       let ribbon = "";
