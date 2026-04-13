@@ -145,6 +145,21 @@ main.layout {
     z-index: 11;
     white-space: nowrap;
 }
+/* 1. Target the image specifically when the card is out of stock */
+.product-card.out-of-stock .product-img img {
+    filter: grayscale(100%); /* Turns the product photo black and white */
+    transition: filter 0.3s ease;
+}
+
+/* 2. Target the text info when the card is out of stock */
+.product-card.out-of-stock .product-info {
+    color: var(--text-muted); /* Fades the title and description */
+}
+
+/* 3. Make the price look disabled */
+.product-card.out-of-stock .price {
+    color: #999 !important; /* Forces the price to look gray */
+}
 
 /* RIBBON */
 .ribbon {
