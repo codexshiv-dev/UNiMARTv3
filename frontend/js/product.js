@@ -163,7 +163,7 @@ if (window.location.pathname.includes("product.html")) {
                 showToast("Added to cart! 🛍️"); // Use your existing toast function
                 
                 btnCart.innerHTML = `<i class="fa-solid fa-check"></i> Added`;
-                btnCart.style.background = "#16a34a"; // Change to green briefly
+                btnCart.style.background = "#19af50"; // Change to green briefly
                 
                 setTimeout(() => {
                     btnCart.textContent = "Go to Cart";
@@ -212,7 +212,28 @@ if (window.location.pathname.includes("product.html")) {
     // RELATED PRODUCTS (USE SAME CARD AS INDEX)
     function renderRelatedProducts(products) {
       const container = document.getElementById("relatedProducts");
-    
+      const stockEl = document.getElementById("productStock");
+      const skuEl = document.getElementById("productSKU");
+
+      // 1. Handle SKU (Always required for "real" feel)
+       if (skuEl) {
+           skuEl.textContent = `SKU: ${product.sku || 'N/A'}`;
+       }
+   
+       // 2. Handle Stock Text
+       if (stockEl) {
+           const isOutOfStock = product.stockQuantity <= 0;
+           
+           if (isOutOfStock) {
+               stockEl.textContent = "Availability: Out of Stock";
+               stockEl.className = "out-stock"; // Applies your red CSS
+           } else {
+               stockEl.textContent = `Availability: In Stock (${product.stockQuantity} units)`;
+               stockEl.className = "in-stock"; // Applies your green CSS
+           }
+       }
+   
+           
       if (!container) {
         console.error("❌ relatedProducts container NOT FOUND");
         return;
