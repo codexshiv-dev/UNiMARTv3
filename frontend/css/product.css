@@ -598,6 +598,7 @@
     }
     .product-info{
         padding: 0 5px;
+        margin-top: 0 !important;
     }
     .product-info .price-row {
         margin-top: 2px;
