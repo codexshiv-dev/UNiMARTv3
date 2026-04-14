@@ -18,7 +18,27 @@ if (window.location.pathname.includes("product.html")) {
     .then(res => res.json())
     .then(product => {
 
-    let quantity = 1;
+      let quantity = 1;
+      //  HANDLE STOCK & SKU UI IMMEDIATELY
+      const stockEl = document.getElementById("productStock");
+      const skuEl = document.getElementById("productSKU");
+      const currentStock = product.stockQuantity ?? 0; 
+      const isOutOfStock = currentStock <= 0;  
+      
+      if (skuEl) skuEl.textContent = `SKU: ${product.sku || 'N/A'}`;
+
+            if (stockEl) {
+                if (isOutOfStock) {
+                    stockEl.textContent = "Availability: Out of Stock";
+                    stockEl.className = "out-stock"; // Red color
+                } else {
+                    // FIXED: Using currentStock variable here for consistency
+                    stockEl.textContent = `Availability: In Stock (${currentStock} units)`;
+                    stockEl.className = "in-stock"; // Green color
+                }
+            }
+
+
       // RELATED PRODUCTS 
       fetch("https://unimart-ecommerce.onrender.com/api/products")
         .then(res => res.json())
@@ -32,30 +52,6 @@ if (window.location.pathname.includes("product.html")) {
           renderRelatedProducts(related.slice(0, 6));
         });
 
-
-         const stockEl = document.getElementById("productStock");
-      const skuEl = document.getElementById("productSKU");
-
-      // 1. Handle SKU (Always required for "real" feel)
-       if (skuEl) {
-           skuEl.textContent = `SKU: ${product.sku || 'N/A'}`;
-       }
-   
-       // 2. Handle Stock Text
-       if (stockEl) {
-           const isOutOfStock = product.stockQuantity <= 0|| !product.stock;
-           
-           if (isOutOfStock) {
-               stockEl.textContent = "Availability: Out of Stock";
-               stockEl.className = "out-stock"; // Applies your red CSS
-           } else {
-               stockEl.textContent = `Availability: In Stock (${product.stockQuantity} units)`;
-               stockEl.className = "in-stock"; // Applies your green CSS
-           }
-       }
-
- 
-     
       // IMAGE + THUMB
       const mainImg = document.getElementById("productImg");
       const thumbs = document.getElementById("thumbs");
@@ -74,24 +70,16 @@ if (window.location.pathname.includes("product.html")) {
         if (index === 0) t.classList.add("active");
 
         t.onclick = () => {
-          mainImg.src = src;
-
-          if (zoomImage) {
-             zoomImage.style.backgroundImage = `url(${src})`;
-           }
-
-          document.querySelectorAll(".thumb").forEach(img =>
-            img.classList.remove("active")
-          );
-
-          t.classList.add("active");
-        };
-
-        thumbs.appendChild(t);
+                    mainImg.src = src;
+                    if (zoomImage) zoomImage.style.backgroundImage = `url(${src})`;
+                    document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+                    t.classList.add("active");
+                };
+                thumbs.appendChild(t);
       });
 
-      // 2. PLACE ZOOM LOGIC HERE (After images are loaded)
-        initSmoothZoom(mainImg, zoomImage);
+      //PLACE ZOOM LOGIC HERE (After images are loaded)
+      initSmoothZoom(mainImg, zoomImage);
      
       // RIBBON (PRODUCT PAGE)
       let ribbon = "";
@@ -101,10 +89,7 @@ if (window.location.pathname.includes("product.html")) {
       
       const mainImageBox = document.querySelector(".main-image");
       if (mainImageBox && ribbon) {
-        mainImageBox.insertAdjacentHTML(
-          "beforeend",
-          `<div class="ribbon-group">${ribbon}</div>`
-        );
+          mainImageBox.insertAdjacentHTML("beforeend", `<div class="ribbon-group">${ribbon}</div>`);
       }
 
        // =====================
@@ -130,17 +115,9 @@ if (window.location.pathname.includes("product.html")) {
       // PRODUCT INFO
       document.getElementById("productName").textContent = product.name;
       document.getElementById("productPrice").textContent = `Rs. ${product.price}`;
-      document.getElementById("oldPrice").textContent =
-        product.oldPrice ? `Rs. ${product.oldPrice}` : "";
-      document.getElementById("discount").textContent =
-        product.discount ? `${product.discount}% OFF` : "";
+      document.getElementById("oldPrice").textContent = product.oldPrice ? `Rs. ${product.oldPrice}` : "";
+      document.getElementById("discount").textContent = product.discount ? `${product.discount}% OFF` : "";
       document.getElementById("productDesc").textContent = product.description;
-
-      document.getElementById("productStock").textContent =
-        product.stock > 0 ? `In Stock: ${product.stock}` : "Out of Stock";
-
-      document.getElementById("productSKU").textContent =
-        `SKU: ${product.sku || "-"}`;
 
       
         // TAGS container (only show if tags exist, else hide to prevent empty space)
@@ -161,17 +138,20 @@ if (window.location.pathname.includes("product.html")) {
 
 
        // ==========================================
-      // UPGRADED ACTION BUTTONS (Cart & Buy)
+      //CART & WHATSAPP BUTTON LOGIC
       // ==========================================      
       const btnCart = document.querySelector(".btn-cart");
       const whatsappBtn = document.getElementById("whatsappBtn");
 
-      if (product.stock === 0) {
-        btnCart.disabled = true;
-        btnCart.textContent = "Out of Stock";
-        whatsappBtn.style.display = "none";
+      if (isOutOfStock) {
+          if (btnCart) {
+              btnCart.disabled = true;
+              btnCart.textContent = "Out of Stock";
+          }
+          if (whatsappBtn) whatsappBtn.style.display = "none";
+       
       } else {
-        // Check if product is already in the cart
+        
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const isInCart = cart.some(item => item._id === product._id);
 
@@ -182,10 +162,8 @@ if (window.location.pathname.includes("product.html")) {
                 btnCart.onclick = () => {
                 addToCart(product, quantity);
                 showToast("Added to cart! 🛍️"); // Use your existing toast function
-                
                 btnCart.innerHTML = `<i class="fa-solid fa-check"></i> Added`;
-                btnCart.style.background = "#19af50"; // Change to green briefly
-                
+                btnCart.style.background = "#19af50"; // Change to green briefly 
                 setTimeout(() => {
                     btnCart.textContent = "Go to Cart";
                     btnCart.style.background = ""; // Revert to CSS default
@@ -193,37 +171,29 @@ if (window.location.pathname.includes("product.html")) {
                 }, 1000);
             };
         }
-
-      // =====================
-      // WHATSAPP
-      // =====================
-      // WhatsApp / Order Button (Direct Buy)
-        whatsappBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Buy at ₹${product.price}`;
-        whatsappBtn.onclick = (e) => {
-          e.preventDefault();
-          // Add to cart first so checkout page can see it
-          addToCart(product, 1);
-          // Redirect to the new separate checkout page
-          window.location.href = "/pages/checkout.html";
-        };
-      }
-      
-      // SHARE
-      document.getElementById("shareBtn").onclick = () => {
-        if (navigator.share) {
-          navigator.share({
-            title: product.name,
-            url: window.location.href
-          });
-        } else {
-          navigator.clipboard.writeText(window.location.href);
-          alert("Link copied!");
+        // WhatsApp / Order Button (Direct Buy)
+        if (whatsappBtn) {
+            whatsappBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Buy at ₹${product.price}`;
+            whatsappBtn.onclick = (e) => {
+                e.preventDefault();
+                addToCart(product, 1);
+                window.location.href = "/pages/checkout.html";
+            };
         }
-      };
-
-
-      
-    })
+     } 
+     // 9. SHARE LOGIC
+            const shareBtn = document.getElementById("shareBtn");
+            if(shareBtn) {
+                shareBtn.onclick = () => {
+                    if (navigator.share) {
+                        navigator.share({ title: product.name, url: window.location.href });
+                    } else {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert("Link copied!");
+                    }
+                };
+            }
+  })
     .catch(err => {
       console.error(err);
       alert("Error loading product");
@@ -242,18 +212,18 @@ if (window.location.pathname.includes("product.html")) {
       container.innerHTML = "";
     
       if (products.length === 0) {
-    // If no related category items, fetch featured products instead
-    fetch("https://unimart-ecommerce.onrender.com/api/products")
-        .then(res => res.json())
-        .then(all => {
-                const featured = all.filter(p => p.isFeatured).slice(0, 4);
-                const title = document.querySelector(".related-section h2");
-                if (title) title.textContent = "Featured for You";
-                if(featured.length > 0) renderRelatedProducts(featured);
-            
-        });
-    return;
-}
+          // If no related category items, fetch featured products instead
+          fetch("https://unimart-ecommerce.onrender.com/api/products")
+              .then(res => res.json())
+              .then(all => {
+                      const featured = all.filter(p => p.isFeatured).slice(0, 4);
+                      const title = document.querySelector(".related-section h2");
+                      if (title) title.textContent = "Featured for You";
+                      if(featured.length > 0) renderRelatedProducts(featured);
+                  
+              });
+       return;
+   }
     
       products.forEach(product => {
         const card = document.createElement("article");
@@ -314,9 +284,7 @@ if (window.location.pathname.includes("product.html")) {
 // ==========================================
 function initSmoothZoom(mainImg, zoomImage) {
     const zoomContainer = document.getElementById("zoomContainer");
-
     if (!zoomContainer || !zoomImage || window.innerWidth <= 768) return;
-
     zoomContainer.addEventListener("mouseenter", () => {
         zoomImage.style.display = "block";
         zoomImage.style.backgroundImage = `url(${mainImg.src})`;
@@ -325,7 +293,7 @@ function initSmoothZoom(mainImg, zoomImage) {
 
     zoomContainer.addEventListener("mousemove", (e) => {
         const rect = zoomContainer.getBoundingClientRect();
-        // Amazon Smoothness calculation
+        //  Smoothness calculation
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
         
@@ -337,9 +305,6 @@ function initSmoothZoom(mainImg, zoomImage) {
         zoomImage.style.display = "none";
     });
 }
-
-
-
 
 
 // CART COUNT UPDATE

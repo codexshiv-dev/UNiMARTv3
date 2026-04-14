@@ -332,8 +332,13 @@
     flex-wrap: wrap;
 }
 
-/* #productStock.in-stock { color: #1a7f37; font-weight: 600; }
-#productStock.out-stock { color: #d93025; font-weight: 600; } */
+#productStock {
+    margin-bottom: 8px;
+    display: block; /* Ensures it stays on its own line */
+}
+
+#productStock.in-stock { color: #1a7f37; font-weight: 600; }
+#productStock.out-stock { color: #d93025; font-weight: 600; }
 #productSKU { color: #777; }
 
 /* TAGS */
