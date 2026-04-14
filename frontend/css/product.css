@@ -593,8 +593,11 @@
         font-size: 22px; /* Slightly larger for modern feel */
         line-height: 1.2;
     }
+    .product-info{
+        padding: 0 5px;
+    }
     .product-info .price-row {
-        margin: 2px 5px;
+        margin-top: 2px;
         padding: 5px 0;
         background: transparent; /* Makes it look more integrated on mobile */
     }
