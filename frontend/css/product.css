@@ -129,7 +129,7 @@
 
 
 /* Wishlist Button on Card */
-.wishlist {
+/* .wishlist {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -147,12 +147,12 @@
     font-size: 12px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     z-index: 5;
-}
+} */
 
-.wishlist:hover {
+/* .wishlist:hover {
     box-shadow: 0 5px 12px rgba(0,0,0,0.25);
     transform: scale(1.1);
-}
+} */
 
 /* ==========================================================================
    3. PRODUCT DETAIL PAGE (Layout)
