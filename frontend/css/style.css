@@ -180,7 +180,7 @@ main.layout {
 
 .ribbon-group {
   position: absolute;
-  top: 280px;
+  top: 380px;
   left: 5px;
   display: flex;
   flex-direction: column;
