@@ -583,6 +583,9 @@
         min-height: unset; /* Smaller for mobile screens */
         height: auto;
     }
+    .product-card .price-row{
+        margin-top: 0 !important;
+    }
     
     #productTags {
         margin-top: 2px;     /* Pull tags up closer to the image */
