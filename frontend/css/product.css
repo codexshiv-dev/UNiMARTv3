@@ -232,11 +232,8 @@
 
 .main-image img {
     width: 100%;
-    /* max-height: 100%; */
     max-height: 380px;
     object-fit: contain;
-    /* display: block; */
-    /* transition: transform 0.2s ease; */
     transition: opacity 0.3s ease;
 }
 
@@ -585,13 +582,21 @@
     }
     
     #productTags {
-        margin-top: 5px;     /* Pull tags up closer to the image */
-        margin-bottom: 5px;
-        padding-left: 5px;   /* Safety gap from screen edge */
+        margin-top: 2px;     /* Pull tags up closer to the image */
+        margin-bottom: 2px;
+       justify-content: flex-start; /* Keeps them aligned with the title */
+        padding-left: 0;
     }
     .product-info h1 {
-        margin-top: 0;       /* Pull title up closer to tags */
-        padding: 0 5px;      /* Prevent text from touching screen edges */
+        margin-top: 0 !important;
+        padding-top: 0;
+        font-size: 22px; /* Slightly larger for modern feel */
+        line-height: 1.2;
+    }
+    .product-info .price-row {
+        margin-top: 5px;
+        padding: 5px 0;
+        background: transparent; /* Makes it look more integrated on mobile */
     }
    .thumbs{
         flex-direction: row; /* Horizontal thumbs on mobile */
