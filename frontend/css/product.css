@@ -575,8 +575,8 @@
     height: 160px;
     }
    .thumbs{
-    flex-direction:column;
-    justify-content:center;
+        flex-direction: row; /* Horizontal thumbs on mobile */
+        justify-content: center;
     }
 
     .product-action-bar {
