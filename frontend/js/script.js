@@ -26,7 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // EXPOSE GLOBAL FUNCTION FOR LAYOUT.JS
   // =======================
   window.resetPageAndRender = () => { 
-    const query = (searchDesktop?.value || searchMobile?.value || "").trim();
+    const d = document.getElementById("searchInputDesktop");
+    const m = document.getElementById("searchInputMobile");
+    const query = (d?.value || m?.value || "").trim();
+
     if (!query) {
       const url = new URL(window.location);
       url.searchParams.delete('search');
@@ -70,6 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (loader) loader.style.display = "none";
       if (content) content.style.display = "block";
 
+      // --- ADD THIS LINE HERE ---
+      syncSearchFromURL();
+
       renderPage(1);
     } catch (err) {
       console.error("Failed to load products:", err);
@@ -83,16 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // =======================
   function getFilteredProducts() { 
     // 1. Check the inputs FIRST
-    let query = (searchDesktop?.value || searchMobile?.value || "").toLowerCase().trim();
-  
+
+    const d = document.getElementById("searchInputDesktop");
+    const m = document.getElementById("searchInputMobile");
+    let query = (d?.value || m?.value || "").toLowerCase().trim();  
     // 2. If inputs are empty, check the URL for ?search=...
     if (!query) {
       const params = new URLSearchParams(window.location.search);
       query = (params.get("search") || "").toLowerCase().trim();
       // SYNC: Put the URL text back into the boxes so the user sees it
       if (query) {
-        if (searchDesktop) searchDesktop.value = query;
-        if (searchMobile) searchMobile.value = query;
+        if (d) d.value = query;
+        if (m) m.value = query;
       }
     }
   
@@ -128,9 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       return;
-    } else {
+    } 
       noResult.style.display = "none";
-    }
+    
 
     productsToRender.forEach(product => {
       const card = document.createElement("article");
@@ -255,8 +263,23 @@ document.addEventListener("DOMContentLoaded", () => {
     resetPageAndRender();
   }));
 
-  searchDesktop?.addEventListener("input", window.resetPageAndRender);
-searchMobile?.addEventListener("input", window.resetPageAndRender);
+  document.addEventListener("input", (e) => {
+  if (e.target.id === "searchInputDesktop" || e.target.id === "searchInputMobile") {
+    window.resetPageAndRender();
+  }
+  });
+
+  function syncSearchFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("search");
+  if (query) {
+    // We search the DOM again because the header might have loaded by now
+    const d = document.getElementById("searchInputDesktop");
+    const m = document.getElementById("searchInputMobile");
+    if (d) d.value = query;
+    if (m) m.value = query;
+  }
+}
 
   // =======================
   // DROPDOWN TOGGLE
