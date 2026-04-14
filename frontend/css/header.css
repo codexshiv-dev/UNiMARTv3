@@ -267,7 +267,12 @@ body.menu-open {
 }
 
 .dropdown-menu.show {
-  display: flex;
+  display: flex !important;
+}
+/* Optional: Rotate the arrow when open */
+.dropdown-toggle.active span {
+  display: inline-block;
+  transform: rotate(180deg);
 }
 
 /* MOBILE CATEGORY */
