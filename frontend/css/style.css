@@ -180,7 +180,7 @@ main.layout {
 
 .ribbon-group {
   position: absolute;
-  top: 265px;
+  top: 280px;
   left: 5px;
   display: flex;
   flex-direction: column;
@@ -224,26 +224,20 @@ main.layout {
   color: white;
   border: none;
   font-size: 16px;
-  /* cursor: pointer;
-  transition: 0.3s; */
+  
 }
 
 .btn-outline {
   background: transparent;
   border: 2px solid var(--primary);
   color: var(--primary);
-   /* font-size: 16px; */
+  
 }
 
 .btn-small {
   padding: 6px 14px;
   font-size: 13px;
 }
-
-/* .btn-primary,
-.btn-outline {
-  padding: 12px 28px;
-} */
 .btn-primary:hover,
 .btn-outline:hover {
   transform: translateY(-2px);
@@ -343,14 +337,7 @@ main.layout {
     grid-template-columns: 1fr;
   }
 
-  /* .filters {
-    position: fixed;
-    left: -100%;
-    transition: 0.3s;
-  } */
    .filters {
-    /* top: 70px; 
-    height: calc(100vh - 70px); */
     position: fixed;
     top: 0;
     left: 0;
