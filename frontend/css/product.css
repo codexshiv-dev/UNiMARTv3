@@ -161,7 +161,7 @@
 .product-page {
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
+    padding: 200px;
     background: var(--bg-main);
     padding-bottom: 150px;
 }
@@ -425,6 +425,29 @@
   
 }
 
+/* ==============================
+  Pagination
+================================ */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 30px 0 10px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
 
 
 /* ==========================================================================
