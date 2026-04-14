@@ -38,7 +38,8 @@
     flex-direction: column;
     transition: 0.2s ease;
     cursor: pointer;
-    height: 100%;
+    height: fit-content;
+    max-width: 280px;
 }
 
 .product-card:hover {
