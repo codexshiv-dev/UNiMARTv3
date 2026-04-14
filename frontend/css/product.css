@@ -167,7 +167,7 @@
 
 .product-layout {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: auto 1fr;
     gap: 20px;
     background: var(--white);
     padding: 20px;
