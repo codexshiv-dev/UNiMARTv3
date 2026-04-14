@@ -158,14 +158,13 @@ main.layout {
 /* RIBBON */
 .ribbon {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 8px;
+  left: 8px;
   background: #111;
   color: #fff;
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 8px;
-  /* border-radius: 6px; */
+  padding: 4px 7px;
   border-radius: 0 4px 4px 0;
   z-index: 10;
 }
@@ -180,7 +179,7 @@ main.layout {
 
 .ribbon-group {
   position: absolute;
-  top: 380px;
+  top: 280px;
   left: 5px;
   display: flex;
   flex-direction: column;
